@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Edit website</title>
+    <link href="../../../vendor/bootstrap/css/bootstrap.css"
+          rel="stylesheet"/>
+    <link href="../css/style.css"
+          rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="hidden-xs col-xs-4">
+                <!--<div class="row">-->
+                <!--<div class="col-sm-10">-->
+                <!--<a href="website-list.html" class="navbar-link">-->
+                <!--<span class="navigating-btn glyphicon glyphicon-chevron-left pull-left"></span>-->
+                <!--</a>-->
+                <!--</div>-->
+
+                <!--<span class="navbar-brand hover-focus-disable">Websites</span>-->
+                <!--</div>-->
+
+                <a href="website-list.html"
+                   class="navbar-btn">
+                    <span class="navigating-btn glyphicon glyphicon-chevron-left pull-left"></span>
+                </a>
+                <span class="navbar-brand hover-focus-disable">Websites</span>
+                <!--</div>-->
+                <!--<div class="col-sm-2">-->
+                <a href="website-new.html"
+                   class="navbar-btn">
+                    <span class="right-align-btn navigating-btn glyphicon glyphicon-plus pull-right"></span>
+                </a>
+                <!--</div>-->
+            </div>
+            <div class="col-xs-12 col-sm-8">
+                <div class="row">
+                    <div class="visible-xs col-xs-12">
+                        <a href="website-list.html"
+                           class="navbar-btn">
+                            <span class="navigating-btn glyphicon glyphicon-chevron-left pull-left"></span>
+                        </a>
+                        <span class="navbar-brand hover-focus-disable">Edit Website</span>
+                        <a href="website-list.html"
+                           class="navbar-btn">
+                            <span class="navigating-btn glyphicon glyphicon-ok pull-right"></span>
+                        </a>
+                    </div>
+                    <div class="hidden-xs col-xs-12">
+                        <span class="current-brand navbar-brand hover-focus-disable">Edit Website</span>
+                        <a href="website-list.html"
+                           class="navbar-btn">
+                            <span class="navigating-btn glyphicon glyphicon-ok pull-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-4 hidden-xs">
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            Name
+                        </div>
+                        <div class="col-sm-2">
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <a href="../page/page-list.html">
+                                Blogging App
+                            </a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="website-edit.html">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <a href="../page/page-list.html">
+                                Blogger
+                            </a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="website-edit.html">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <a href="../page/page-list.html">
+                                Address Book App
+                            </a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="website-edit.html">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <a href="../page/page-list.html">
+                                Script Testing App
+                            </a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="website-edit.html">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input class="form-control"
+                           placeholder="facebook"
+                           value="Blogger"
+                           id="name"/>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description"
+                              rows="5"
+                              placeholder="So big it is its own country"
+                              class="form-control">"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</textarea>
+                </div>
+            </form>
+
+            <a href="website-list.html"
+               class="btn btn-block btn-danger">Delete</a>
+        </div>
+    </div>
+
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6 text-center">
+                <a href="../index.html"
+                   class="navbar-btn">
+                    <span class="navigating-btn glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+            <div class="col-xs-6 text-center">
+                <a href="../user/profile.html"
+                   class="navbar-btn">
+                    <span class="navigating-btn glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+</body>
+</html>

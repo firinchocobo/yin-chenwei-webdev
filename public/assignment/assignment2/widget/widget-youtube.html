@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Edit Youtube widget</title>
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet"/>
+    <link href="../css/style.css"
+          rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="header navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-10">
+                <a href="widget-list.html"
+                   class="navbar-btn">
+                    <span class="navigating-btn glyphicon glyphicon-chevron-left pull-left"></span>
+                </a>
+                <span class="navbar-brand hover-focus-disable">Widget Edit</span>
+            </div>
+            <div class="col-xs-2">
+                <a href="widget-list.html"
+                   class="navbar-btn">
+                    <span class="navigating-btn glyphicon glyphicon-ok pull-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <form>
+        <div class="form-group">
+            <label for="username">Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="username"
+                   placeholder="widget name"
+                   value="video1"/>
+        </div>
+        <div class="form-group">
+            <label for="text">Text</label>
+            <input type="text"
+                   class="form-control"
+                   id="text"
+                   placeholder="title"
+                   value="This is a sample video"/>
+        </div>
+        <div class="form-group">
+            <label for="URL">URL</label>
+            <input type="url"
+                   class="form-control"
+                   id="URL"
+                   placeholder="http://"
+                   value="https://www.youtube.com/embed/rwhuzDSlgXM"/>
+        </div>
+        <div class="form-group">
+            <label for="width">size</label>
+            <select id="width"
+                    class="form-control">
+                <option>100%</option>
+                <option>80%</option>
+                <option>60%</option>
+                <option selected="selected">40%</option>
+                <option>20%</option>
+            </select>
+        </div>
+    </form>
+
+    <a class="btn btn-danger  btn-block"
+       href="widget-list.html">Delete</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6 text-center">
+                <a href="../index.html"
+                   class="navbar-btn">
+                    <span class="navigating-btn glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+            <div class="col-xs-6 text-center">
+                <a href="../user/profile.html"
+                   class="navbar-btn">
+                    <span class="navigating-btn glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>
