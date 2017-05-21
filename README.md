@@ -5,6 +5,6 @@ https://yin-chenwei-webdev.herokuapp.com/ </br>
 Link to final project: (later) </br>
 Link to assignments:
 <ul>
-<li>https://yin-chenwei-webdev.herokuapp.com/assignment/assignment2/index.html</li>
+<li>Assignment 2: <a href="https://yin-chenwei-webdev.herokuapp.com/assignment/assignment2/index.html"></a>"</li>
 </ul>
 </br>
