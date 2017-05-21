@@ -3,4 +3,8 @@ I’m Chenwei Yin. I earned my bachelor degree from Indiana University and curre
 Root to the hosted environment on Heroku: </br>
 https://yin-chenwei-webdev.herokuapp.com/ </br>
 Link to final project: (later) </br>
-Link to assignments: (later) </br>
+Link to assignments:
+<ul>
+<li>https://yin-chenwei-webdev.herokuapp.com/assignment/assignment2/index.html</li>
+</ul>
+</br>
