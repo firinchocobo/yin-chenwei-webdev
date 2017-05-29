@@ -1,0 +1,62 @@
+<div ng-include="'views/common/header-noSideBar.view.client.html'"></div>
+
+<div class="container-fluid">
+    <form>
+        <div class="form-group">
+            <label for="username">Name</label>
+            <input type="text"
+                   class="form-control"
+                   ng-model="model.widget.name"
+                   id="username"
+                   placeholder="widget name"/>
+        </div>
+        <div class="form-group">
+            <label for="text">Text</label>
+            <input type="text"
+                   class="form-control"
+                   ng-model="model.widget.text"
+                   id="text"
+                   placeholder="title"/>
+        </div>
+        <div class="form-group">
+            <label for="URL">URL</label>
+            <input type="url"
+                   class="form-control"
+                   ng-model="model.widget.url"
+                   id="URL"
+                   placeholder="http://"/>
+        </div>
+        <div class="form-group">
+            <label for="width">size</label>
+            <select id="width"
+                    ng-model="model.widget.width"
+                    class="form-control">
+                <option ng-selected="model.widget.width=='100%'">100%</option>
+                <option ng-selected="model.widget.width=='80%'">80%</option>
+                <option ng-selected="model.widget.width=='60%'">60%</option>
+                <option ng-selected="model.widget.width=='40%'">40%</option>
+                <option ng-selected="model.widget.width=='20%'">20%</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="file">Upload</label>
+            <input id="file"
+                   multiple
+                   type="file"
+                   class="form-control"/>
+        </div>
+    </form>
+
+    <a class="btn btn-warning  btn-block"
+       href="">Upload Image</a>
+    <a class="btn btn-primary  btn-block"
+       ng-click="model.funcButton()">Save</a>
+    <a class="btn btn-danger  btn-block"
+       ng-show="model.edit"
+       ng-click="model.goBack()">Delete</a>
+    <a class="btn btn-danger  btn-block"
+       ng-show="model.new"
+       ng-click="model.goBack()">Cancel</a>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

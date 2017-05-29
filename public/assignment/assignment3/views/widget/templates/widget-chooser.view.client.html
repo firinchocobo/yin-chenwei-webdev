@@ -1,0 +1,25 @@
+<div ng-include="'views/common/header-noSideBar.view.client.html'"></div>
+
+<div class="container-fluid">
+    <ul class="list-group">
+        <li class="list-group-item active">
+            <div class="row">
+                <div class="col-xs-12">
+                    Name
+                </div>
+            </div>
+        </li>
+        <li ng-repeat="widgetType in model.widgetTypes"
+            class="list-group-item">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a ng-click="model.widgetUrl(widgetType)">
+                        {{widgetType}}
+                    </a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
