@@ -69,7 +69,7 @@ function uploadImage(req, res) {
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
 
-    var callbackUrl = "/assignment/assignment3/index.html#!/user/" + userId + "/website/" + websiteId +
+    var callbackUrl = "/assignment/assignment4/index.html#!/user/" + userId + "/website/" + websiteId +
         "/page/" + pageId + "/widget/" + widgetId;
 
     if (!myFile) {
@@ -91,7 +91,7 @@ function uploadImage(req, res) {
 function changeUrlForWidget(widgetId, filename) {
     for (var i in widgets) {
         if (widgets[i]._id === widgetId) {
-            widgets[i].url = '/assignment/assignment3/uploads/' + filename;
+            widgets[i].url = '/assignment/assignment4/uploads/' + filename;
             return;
         }
     }
