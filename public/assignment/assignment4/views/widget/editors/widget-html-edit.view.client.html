@@ -1,0 +1,33 @@
+<div ng-include="'views/common/header-noSideBar.view.client.html'"></div>
+
+<div class="container-fluid">
+    <form>
+        <div class="form-group">
+            <label for="username">Name</label>
+            <input type="text"
+                   class="form-control"
+                   ng-model="model.widget.name"
+                   id="username"
+                   placeholder="widget name"/>
+        </div>
+        <div class="form-group">
+            <label for="text">Text</label>
+            <input type="text"
+                   class="form-control"
+                   ng-model="model.widget.text"
+                   id="text"
+                   placeholder="title"/>
+        </div>
+    </form>
+
+    <a class="btn btn-primary  btn-block"
+       ng-click="model.funcButton()">Save</a>
+    <a class="btn btn-danger  btn-block"
+       ng-show="model.edit"
+       ng-click="model.deleteWidget()">Delete</a>
+    <a class="btn btn-danger  btn-block"
+       ng-show="model.new"
+       ng-click="model.goBack()">Cancel</a>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
