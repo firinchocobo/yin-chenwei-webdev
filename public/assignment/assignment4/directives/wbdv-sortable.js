@@ -1,13 +1,14 @@
 (function () {
     angular
-        .module("wbdvDirectives", ['WebAppMaker'])
+        .module("wbdvDirectives", [])
         // .controller('controller', function ($scope, WidgetListController) {
         //     $scope.pageId = WidgetListController.pageId;
         // })
         .directive('wdDraggable', wdDraggable);
 
-    function wdDraggable($location, $http) {
+    function wdDraggable($location, $http, $routeParams) {
 
+        var pageId = $routeParams.pid;
         // var controller = function ($scope) {
         //     $scope.controller = $injector
         // }
@@ -16,7 +17,8 @@
         // });
         // var controller = $injector.get('WidgetListController');
         // var controller = angular.module('WebAppMaker').controller('WidgetListController');
-        var pageId = $location.path().split('/')[6];
+
+       // var pageId = $location.path().split('/')[6];
 
         function sendPosition(index1, index2) {
 

@@ -12,6 +12,7 @@
         model.deleteWidget = deleteWidget;
         model.funcButton = funcButton;
         model.goBack = goBack;
+        model.goSearchImg = goSearchImg;
 
         model.userId = $routeParams.uid;
         model.websiteId = $routeParams.wid;
@@ -78,6 +79,15 @@
             } else {
                 $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
             }
+        }
+
+        function goSearchImg() {
+            widgetService
+                .updateWidget(model.widgetId, model.widget)
+                .then(function () {
+                    $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/"
+                        + model.widgetId + "/search");
+                });
         }
     }
 })();

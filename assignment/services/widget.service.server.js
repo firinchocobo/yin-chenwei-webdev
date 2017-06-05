@@ -47,6 +47,7 @@ function sortWidget(req, res) {
                 widgets[smaller] = widgets[larger];
                 widgets[larger] = temp;
                 res.sendStatus(200);
+                return;
             }
             if (counter === smaller) {
                 temp = widgets[i];
