@@ -7,10 +7,6 @@
 
         var model = this;
 
-        model.userId = $routeParams.uid;
-        model.websiteId = $routeParams.wid;
-        model.pageId = $routeParams.pid;
-
         model.updatePage = updatePage;
         model.deletePage = deletePage;
         model.goBack = goBack;
@@ -31,6 +27,8 @@
                 .findPageById(model.pageId)
                 .then(function (page) {
                     model.page = page;
+                }, function () {
+                    model.error = "Can't find the requested page at this moment, try again!";
                 });
             model.sideName = "Pages";
             model.currentName = "Edit Page";
@@ -45,7 +43,9 @@
                 .updatePage(model.pageId, model.page)
                 .then(function () {
                     $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page");
-                })
+                }, function () {
+                    model.error = "Can't update at this moment, try again!";
+                });
         }
 
         function deletePage() {
@@ -53,8 +53,9 @@
                 .deletePage(model.pageId)
                 .then(function () {
                     $location.url('/user/' + model.userId + '/website/' + model.websiteId + "/page");
-
-                })
+                }, function () {
+                    model.error = "Can't delete website at this moment, try again!";
+                });
         }
 
         function goBack() {
@@ -69,7 +70,5 @@
             updatePage();
             // $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page");
         }
-
-
     }
 })();

@@ -19,8 +19,9 @@
             websiteService
                 .findWebsitesByUser(model.userId)
                 .then(function (websites) {
-                    model.websites =  websites;
-                });            model.sideName = "Websites";
+                    model.websites = websites;
+                });
+            model.sideName = "Websites";
             model.currentName = "New Website";
             model.sideButtonPattern = "glyphicon glyphicon-refresh";
             model.funcButtonPattern = "glyphicon glyphicon-ok";

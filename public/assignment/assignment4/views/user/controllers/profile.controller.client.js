@@ -19,6 +19,8 @@
                 .findUserById(model.userId)
                 .then(function (user) {
                     model.user = user;
+                }, function () {
+                    model.error = "Can't find the requested profile at this moment, try again!";
                 });
             model.currentName = "Profile";
             model.funcButtonPattern = "glyphicon glyphicon-ok";

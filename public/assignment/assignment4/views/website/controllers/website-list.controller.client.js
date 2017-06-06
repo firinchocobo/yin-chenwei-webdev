@@ -16,7 +16,7 @@
             websiteService
                 .findWebsitesByUser(model.userId)
                 .then(function (websites) {
-                    model.websites =  websites;
+                    model.websites = websites;
                 });
             model.currentName = "Websites";
             model.funcButtonPattern = "glyphicon glyphicon-plus";

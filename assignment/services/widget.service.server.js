@@ -1,7 +1,7 @@
 const app = require('../../express');
 
 var multer = require('multer'); // npm install multer --save
-var upload = multer({dest: __dirname + '/../../public/assignment/assignment3/uploads'});
+var upload = multer({dest: __dirname + '/../../public/assignment/assignment4/uploads'});
 
 var widgets = [
     {"_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -30,9 +30,9 @@ app.delete('/api/widget/:widgetId', deleteWidget);
 
 function sortWidget(req, res) {
     pageId = req.params.pageId;
+    var start = req.query.initial;
+    var end = req.query.final;
 
-    var start = req.query.index1;
-    var end = req.query.index2;
     if (start === end) {
         res.sendStatus(200);
     }
@@ -40,20 +40,17 @@ function sortWidget(req, res) {
     var smaller = Math.min(start, end);
     var larger = Math.max(start, end);
     var counter = 0;
-    var temp = widgets[0];
     for (var i in widgets) {
         if (widgets[i].pageId === pageId) {
             if (counter === larger) {
+                var temp = widgets[smaller];
                 widgets[smaller] = widgets[larger];
                 widgets[larger] = temp;
                 res.sendStatus(200);
                 return;
             }
             if (counter === smaller) {
-                temp = widgets[i];
                 smaller = i;
-                counter += 1;
-                continue;
             }
             counter += 1;
         }
@@ -75,17 +72,18 @@ function uploadImage(req, res) {
 
     if (!myFile) {
         res.redirect(callbackUrl);
+    } else {
+
+        var originalname = myFile.originalname; // file name on user's computer
+        var filename = myFile.filename;     // new file name in upload folder
+        var path = myFile.path;         // full path of uploaded file
+        var destination = myFile.destination;  // folder where file is saved to
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
+
+        changeUrlForWidget(widgetId, filename);
+        res.redirect(callbackUrl);
     }
-
-    var originalname = myFile.originalname; // file name on user's computer
-    var filename = myFile.filename;     // new file name in upload folder
-    var path = myFile.path;         // full path of uploaded file
-    var destination = myFile.destination;  // folder where file is saved to
-    var size = myFile.size;
-    var mimetype = myFile.mimetype;
-
-    changeUrlForWidget(widgetId, filename);
-    res.redirect(callbackUrl);
 }
 
 

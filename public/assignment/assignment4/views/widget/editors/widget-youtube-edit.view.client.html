@@ -1,5 +1,8 @@
 <div ng-include="'views/common/header-noSideBar.view.client.html'"></div>
 <div class="container-fluid">
+    <div ng-show="model.error"
+         class="alert alert-danger">{{model.error}}
+    </div>
     <form>
         <div class="form-group">
             <label for="username">Name</label>
@@ -32,9 +35,9 @@
                     class="form-control"
                     ng-options="width.value as width.label for width in model.displayWidth"
                     ng-init="model.widget.width = (model.widget.width || model.defaultDisplayWidth)">
-            <!--<select id="width"-->
-                    <!--ng-model="model.widget.width"-->
-                    <!--class="form-control">-->
+                <!--<select id="width"-->
+                <!--ng-model="model.widget.width"-->
+                <!--class="form-control">-->
                 <!--<option ng-selected="model.widget.width=='100%'">100%</option>-->
                 <!--<option ng-selected="model.widget.width=='80%'">80%</option>-->
                 <!--<option ng-selected="model.widget.width=='60%'">60%</option>-->

@@ -21,10 +21,10 @@
         function searchPhotos(searchText) {
             flickrService
                 .searchPhotos(searchText)
-                .then(function(response) {
+                .then(function (response) {
                     // console.log(response.data);
-                    data = response.data.replace("jsonFlickrApi(","");
-                    data = data.substring(0,data.length - 1);
+                    data = response.data.replace("jsonFlickrApi(", "");
+                    data = data.substring(0, data.length - 1);
                     data = JSON.parse(data);
                     model.photos = data.photos;
                 });
@@ -41,9 +41,13 @@
                     // console.log(model.widget);
                     widgetService
                         .updateWidget(model.widgetId, model.widget)
-                        .then(
-                            $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + model.widgetId)
-                        );
+                        .then(function () {
+                            $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + model.widgetId);
+                        }, function () {
+                            model.error = "Can't assign the selected photo to the widget at this moment, try again!";
+                        });
+                }, function () {
+                    model.error = "Can't assign the selected photo to the widget at this moment, try again!";
                 });
         }
 

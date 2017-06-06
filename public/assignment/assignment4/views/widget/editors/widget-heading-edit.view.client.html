@@ -1,6 +1,9 @@
 <div ng-include="'views/common/header-noSideBar.view.client.html'"></div>
 
 <div class="container-fluid">
+    <div ng-show="model.error"
+         class="alert alert-danger">{{model.error}}
+    </div>
     <form>
         <div class="form-group">
             <label for="username">Name</label>
@@ -20,29 +23,34 @@
         </div>
         <div class="form-group">
             <label for="size">size</label>
-
             <select id="size"
                     ng-model="model.widget.size"
-                    class="form-control">
-                <option ng-selected="model.widget.size==1"
-                        ng-value="1">Largest
-                </option>
-                <option ng-selected="model.widget.size==2"
-                        ng-value="2">Larger
-                </option>
-                <option ng-selected="model.widget.size==3"
-                        ng-value="3">Large
-                </option>
-                <option ng-selected="model.widget.size==4"
-                        ng-value="4">Small
-                </option>
-                <option ng-selected="model.widget.size==5"
-                        ng-value="5">Smaller
-                </option>
-                <option ng-selected="model.widget.size==6"
-                        ng-value="6">Smallest
-                </option>
+                    class="form-control"
+                    ng-options="size.value as size.label for size in model.displaySize"
+                    ng-init="model.widget.size = (model.widget.size || model.defaultDisplaySize)">
             </select>
+            <!--<select id="size"-->
+            <!--ng-model="model.widget.size"-->
+            <!--class="form-control">-->
+            <!--<option ng-selected="model.widget.size==1"-->
+            <!--ng-value="1">Largest-->
+            <!--</option>-->
+            <!--<option ng-selected="model.widget.size==2"-->
+            <!--ng-value="2">Larger-->
+            <!--</option>-->
+            <!--<option ng-selected="model.widget.size==3"-->
+            <!--ng-value="3">Large-->
+            <!--</option>-->
+            <!--<option ng-selected="model.widget.size==4"-->
+            <!--ng-value="4">Small-->
+            <!--</option>-->
+            <!--<option ng-selected="model.widget.size==5"-->
+            <!--ng-value="5">Smaller-->
+            <!--</option>-->
+            <!--<option ng-selected="model.widget.size==6"-->
+            <!--ng-value="6">Smallest-->
+            <!--</option>-->
+            <!--</select>-->
         </div>
     </form>
 

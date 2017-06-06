@@ -30,8 +30,6 @@
 
         init();
 
-
-
         function widgetUrl(widget) {
             return 'views/widget/templates/widget-' + widget.widgetType.toLowerCase() + '.view.client.html';
         }

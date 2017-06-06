@@ -1,6 +1,9 @@
 <div ng-include="'views/common/header-noSideBar.view.client.html'"></div>
 
 <div class="container-fluid">
+    <div ng-show="model.error"
+         class="alert alert-danger">{{model.error}}
+    </div>
     <form>
         <div class="form-group">
             <label for="username">Name</label>

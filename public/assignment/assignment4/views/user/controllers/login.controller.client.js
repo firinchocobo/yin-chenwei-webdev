@@ -14,8 +14,9 @@
         model.currentName = "Login";
 
         function init() {
-            model.user={};
+            model.user = {};
         }
+
         init();
 
         function login() {

@@ -11,15 +11,17 @@ var users = [
 //:userId :path param
 //another type is query param
 
-app.get('/api/user', findAllUsers);
 app.post('/api/user', createUser);
+app.get('/api/user', findAllUsers);
+/* can't enter this section, because all the url will go
+ straight into the above */
 app.get('/api/user', findUserByCredentials);
 app.get('/api/user', findUserByUsername);
+/*------------------------------------------------------*/
 app.get('/api/user/:userId', findUserById);
 app.put('/api/user/:userId', updateUser);
 app.delete('/api/user/:userId', deleteUser);
 // app.post('/api/user', findAllUsers);
-app.get('/api/user', findAllUsers);
 
 function findUserById(req, res) {
     var userId = req.params.userId;
@@ -33,46 +35,11 @@ function findUserById(req, res) {
     res.sendStatus(404);
 }
 
-
-// function findUserByCredentials(req, res) {
-//     var username = req.query.username;
-//     var password = req.query.password;
-//     for (var i in users) {
-//         var userI = users[i];
-//         if (userI.username === username && userI.password === password) {
-//             res.json(userI);
-//             // res.sendStatus(200);
-//             return;
-//         }
-//         // } else if (userI.username === username && userI.password !== password) {
-//         //     // res.sendStatus(404).send("incorrect password");
-//         //     res.sendStatus(404);
-//         //
-//         //     return;
-//         // }
-//     }
-//     res.sendStatus(404);
-// }
-
-// function findUserByUsername(req, res) {
-//     var username = req.query.username;
-//     for (var i in users) {
-//         if (users[i].username === username) {
-//             //console.log(username);
-//             res.json(users[i]);
-//             // res.sendStatus(200);
-//             return;
-//         }
-//     }
-//     res.sendStatus(404);
-// }
-
 function createUser(req, res) {
     var user = req.body;
     user._id = (new Date()).getTime() + "";
     users.push(user);
     res.json(user);
-    // res.sendStatus(200);
 }
 
 function updateUser(req, res) {
@@ -125,7 +92,7 @@ function findUserByCredentials(username, password, res) {
             return;
         } else if (userI.username === username && userI.password !== password) {
             // console.log(users);
-            res.status(404).json({ error: 'something is wrong' });
+            res.status(404).json({error: 'something is wrong'});
             // res.status(404).send("incorrect password");
             // res.sendStatus(404);
 
@@ -138,22 +105,10 @@ function findUserByCredentials(username, password, res) {
 function findAllUsers(req, res) {
     var username = req.query.username;
     var password = req.query.password;
-    if(username && password) {
+    if (username && password) {
         findUserByCredentials(username, password, res);
-        // for (var i in users) {
-        //     var userI = users[i];
-        //     if (userI.username === username && userI.password === password) {
-        //         res.send(userI);
-        //     } else if (userI.username === username && userI.password !== password) {
-        //         return "incorrect password";
-        //     } else if (userI.username !== username && userI.password === password) {
-        //         return "incorrect username";
-        //     }
-        // }
-        // return null;
     } else if (username) {
         findUserByUsername(username, res);
-        // res.json(users);
     } else {
         res.sendStatus(404);
     }

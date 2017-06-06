@@ -13,9 +13,11 @@
         model.currentName = "Register";
 
         function init() {
-            model.user={};
+            model.user = {};
         }
+
         init();
+
         function register() {
             if (model.user.username === null || typeof model.user.username === 'undefined'
                 || model.user.username.trim() === "") {

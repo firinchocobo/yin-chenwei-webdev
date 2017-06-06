@@ -20,12 +20,14 @@
             websiteService
                 .findWebsitesByUser(model.userId)
                 .then(function (websites) {
-                    model.websites =  websites;
+                    model.websites = websites;
                 });
             websiteService
                 .findWebsiteById(model.websiteId)
                 .then(function (website) {
                     model.website = website;
+                }, function () {
+                    model.error = "Can't find the requested website at this moment, try again!";
                 });
             model.sideName = "Websites";
             model.currentName = "Edit Website";
