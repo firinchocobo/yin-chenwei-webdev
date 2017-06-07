@@ -105,7 +105,7 @@ function createWidget(req, res) {
 }
 
 function findAllWidgetsForPage(req, res) {
-    console.log(widgets);
+    // console.log(widgets);
     pageId = req.params.pageId;
     var result = [];
     for (var i in widgets) {
