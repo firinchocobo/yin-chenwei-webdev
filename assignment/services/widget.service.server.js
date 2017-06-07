@@ -35,28 +35,27 @@ function sortWidget(req, res) {
 
     if (start === end) {
         res.sendStatus(200);
-    }
+    } else {
 
-    var smaller = Math.min(start, end);
-    var larger = Math.max(start, end);
-    var counter = 0;
-    for (var i in widgets) {
-        if (widgets[i].pageId === pageId) {
-            if (counter === larger) {
-                var temp = widgets[smaller];
-                widgets[smaller] = widgets[larger];
-                widgets[larger] = temp;
-                res.sendStatus(200);
-                return;
+        var counter = 0;
+        for (var i in widgets) {
+            if (widgets[i].pageId === pageId) {
+                if (counter === start) {
+                    start = i;
+                } else if (counter === end) {
+                    end = i;
+                }
+                counter += 1;
             }
-            if (counter === smaller) {
-                smaller = i;
-            }
-            counter += 1;
         }
+
+        var widgetToPush = widgets[start];
+        widgets.splice(start, 1);
+        widgets.splice(end, 0, widgetToPush);
+        res.sendStatus(200);
     }
-    res.sendStatus(404);
 }
+
 function uploadImage(req, res) {
 
     var widgetId = req.body.widgetId;
@@ -106,6 +105,7 @@ function createWidget(req, res) {
 }
 
 function findAllWidgetsForPage(req, res) {
+    console.log(widgets);
     pageId = req.params.pageId;
     var result = [];
     for (var i in widgets) {
