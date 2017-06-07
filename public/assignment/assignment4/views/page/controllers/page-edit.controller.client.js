@@ -28,7 +28,7 @@
                 .then(function (page) {
                     model.page = page;
                 }, function () {
-                    model.error = "Can't find the requested page at this moment, try again!";
+                    goBack();
                 });
             model.sideName = "Pages";
             model.currentName = "Edit Page";

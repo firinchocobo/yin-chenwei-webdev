@@ -39,7 +39,7 @@ function findPageById(req, res) {
     var page = pages.find(function (page) {
         return page._id === pageId;
     });
-    if (page !== 'undefined') {
+    if (page) {
         res.json(page);
     } else {
         res.sendStatus(404);

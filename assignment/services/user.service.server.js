@@ -28,7 +28,7 @@ function findUserById(req, res) {
     var user = users.find(function (user) {
         return user._id === userId;
     });
-    if (user !== 'undefined') {
+    if (user) {
         res.json(user);
         return;
     }

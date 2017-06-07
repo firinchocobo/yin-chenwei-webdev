@@ -43,7 +43,7 @@ function findWebsiteById(req, res) {
     var website = websites.find(function (website) {
         return website._id === websiteId;
     });
-    if (website !== 'undefined') {
+    if (website) {
         res.json(website);
     } else {
         res.sendStatus(404);

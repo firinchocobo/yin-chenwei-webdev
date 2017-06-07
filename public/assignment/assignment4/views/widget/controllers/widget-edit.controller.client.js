@@ -43,7 +43,7 @@
                 .then(function (widget) {
                     model.widget = widget;
                 }, function () {
-                    model.error = "Can't find the requested widget at this moment, try again!";
+                    $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
                 });
             model.funcButtonPattern = "glyphicon glyphicon-ok";
             checkIfNew();

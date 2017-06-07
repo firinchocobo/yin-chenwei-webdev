@@ -121,7 +121,7 @@ function findWidgetById(req, res) {
     var widget = widgets.find(function (widget) {
         return widget._id === widgetId;
     });
-    if (widget !== 'undefined') {
+    if (widget) {
         res.json(widget);
     } else {
         res.sendStatus(404);
