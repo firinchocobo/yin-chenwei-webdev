@@ -3,7 +3,7 @@
         .module("testYummly")
         .service("yummlyService", YummlyService);
 
-    function YummlyService($http) {
+    function YummlyService($http, $sce) {
 
         this.searchRecipes = searchRecipes;
         this.detailRecipe = detailRecipe;
@@ -16,10 +16,10 @@
 
 
         function searchRecipes(searchTerm) {
-            var url = urlBase
+            var url = trust(urlBase
                 .replace("app-id", id)
                 .replace("app-key", key)
-                .replace("your_search_parameters", searchTerm);
+                .replace("your_search_parameters", searchTerm));
             return $http.get(url);
         }
 
@@ -28,12 +28,17 @@
             // console.log(id);
             // console.log(key);
             // var url = 'http://api.yummly.com/v1/api/recipe/recipe-id?_app_id=app-id&_app_key=app-key';
-            var url = 'http://api.yummly.com/v1/api/recipe/recipe-id?_app_id=app-id&_app_key=app-key'
+            var url = trust('http://api.yummly.com/v1/api/recipe/recipe-id?_app_id=app-id&_app_key=app-key'
                 .replace("recipe-id", recipeId)
                 .replace("app-id", id)
-                .replace("app-key", key);
+                .replace("app-key", key));
             return $http.get(url);
 
+        }
+
+        function trust(html) {
+            // scrubbing the html
+            return $sce.trustAsHtml(html);
         }
     }
 
