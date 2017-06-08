@@ -1,0 +1,71 @@
+<div ng-include="'views/common/header-noSideBar.view.client.html'"></div>
+<div class="container-fluid">
+        <!--<div id="filckrImage" class="col-xs-6 col-sm-3 col-md-2 text-center" ng-repeat="recipe in model.recipes">-->
+
+
+    <img ng-src="{{model.recipe.images[0].hostedMediumUrl}}"/>
+
+    <h3>{{model.recipe.name}}</h3><br>
+
+    <label>Total Time</label>
+    <span>{{model.recipe.totalTime}}</span><br>
+
+    <label>Prepare Time</label>
+    <span>{{model.recipe.prepTime}}</span><br>
+
+    <label>Cook Time</label>
+    <span>{{model.recipe.cookTime}}</span><br><br>
+
+    <label for="ingredients">Ingredients</label>
+    <div id="ingredients"
+         class="form-control"
+         ng-repeat="ingredient in model.recipe.ingredientLines">
+        {{ingredient}}
+    </div>
+
+    <!--<div ng-repeat="(key, value) in model.recipe track by $index">-->
+
+        <!--<label>{{key}}</label>-->
+        <!--<span ng-if="!model.ifJson(value)">{{value}}</span>-->
+        <!--&lt;!&ndash;<div ng-if="!model.ifJson(value)"&ndash;&gt;-->
+        <!--&lt;!&ndash;class="form-control">{{value}}&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--<div ng-if="model.ifJson(value)"-->
+             <!--ng-repeat="(key1, value1) in value track by $index">-->
+            <!--<label ng-if="!model.ifJson(value)">{{key1}}</label>-->
+            <!--<span class="form-control" style="overflow: scroll">{{value1}}</span>-->
+            <!--<div ng-if="!model.ifJson(value1)"-->
+            <!--class="form-control">{{value1}}-->
+            <!--</div>-->
+            <!--<div ng-if="model.ifJson(value1)"-->
+                 <!--ng-repeat="(key2, value2) in value1 track by $index">-->
+                <!--<label>{{key2}}</label>-->
+                <!--<span>{{value2}}</span>-->
+
+                <!--<div class="form-control"-->
+                <!--style="overflow: scroll">{{value2}}-->
+                <!--</div>-->
+            </div>
+
+            <!--{{model.recipe}}<br><br>-->
+            <!--{{model.recipe}}<br><br>-->
+            <!--<img ng-src="{{recipe.smallImageUrls[0]}}"/><br>-->
+            <!--{{recipe.imageUrlsBySize['90']}}<br><br>-->
+            <!--{{recipe.id}}-->
+            <!--<a ng-click="model.goToDetail(recipe)">{{recipe.recipeName}}</a>-->
+            <!--{{recipe.ingredients}}<br><br>-->
+            <!--<img ng-click="model.selectPhoto(recipe)"-->
+            <!--ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_q.jpg"/>-->
+
+
+    <!--<label for="ingredients">Ingredients</label>-->
+    <!--<div id="ingredients" class="form-control" ng-repeat="ingredient in model.recipe.ingredientLines">-->
+        <!--{{ingredient}}-->
+    <!--</div>-->
+        <!--<div ng-repeat="photo in model.photos">-->
+
+        <!--{{photo}}-->
+        <!--</div>-->
+
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

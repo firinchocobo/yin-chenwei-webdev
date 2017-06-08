@@ -1,0 +1,34 @@
+<div ng-include="'views/common/header-noSideBar.view.client.html'"></div>
+<div class="container-fluid">
+    <div class="input-group">
+        <input ng-model="searchText"
+               type="text"
+               placeholder="Search recipes"
+               class="form-control">
+        <span class="input-group-btn">
+        <a ng-click="model.searchRecipes(searchText)" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+    </div>
+    <div class="row">
+        <!--<div id="filckrImage" class="col-xs-6 col-sm-3 col-md-2 text-center" ng-repeat="recipe in model.recipes">-->
+        <div class="col-xs-4 text-center" id="yummlyImage" ng-repeat="recipe in model.recipes">
+
+            <!--{{recipe}}<br><br>-->
+            <img ng-src="{{recipe.smallImageUrls[0]}}"/><br>
+            <!--{{recipe.imageUrlsBySize['90']}}<br><br>-->
+            <!--{{recipe.id}}-->
+            <a ng-click="model.goToDetail(recipe)">{{recipe.recipeName}}</a>
+            <!--{{recipe.ingredients}}<br><br>-->
+            <!--<img ng-click="model.selectPhoto(recipe)"-->
+                 <!--ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_q.jpg"/>-->
+        </div>
+        <!--<div ng-repeat="photo in model.photos">-->
+
+            <!--{{photo}}-->
+        <!--</div>-->
+    </div>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
