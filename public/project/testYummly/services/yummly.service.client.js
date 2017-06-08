@@ -11,7 +11,7 @@
         var id = 'ef65e9c2';
         var key = 'efd5ede00f6c4b4f7fd8e210a4529a9a';
 
-        var urlBase = 'http://api.yummly.com/v1/api/recipes?_app_id=app-id&_app_key=app-key&q=your_search_parameters';
+        var urlBase = 'https://api.yummly.com/v1/api/recipes?_app_id=app-id&_app_key=app-key&q=your_search_parameters';
         // '&callback=package';
 
 
@@ -28,7 +28,7 @@
             // console.log(id);
             // console.log(key);
             // var url = 'http://api.yummly.com/v1/api/recipe/recipe-id?_app_id=app-id&_app_key=app-key';
-            var url = trust('http://api.yummly.com/v1/api/recipe/recipe-id?_app_id=app-id&_app_key=app-key'
+            var url = trust('https://api.yummly.com/v1/api/recipe/recipe-id?_app_id=app-id&_app_key=app-key'
                 .replace("recipe-id", recipeId)
                 .replace("app-id", id)
                 .replace("app-key", key));
