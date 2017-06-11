@@ -1,0 +1,17 @@
+<div ng-switch="model.widget.widgetType">
+    <div ng-switch-when="HEADING">
+        <div ng-include="model.widgetUrl(model.widget)"></div>
+    </div>
+    <div ng-switch-when="IMAGE">
+        <div ng-include="model.widgetUrl(model.widget)"></div>
+    </div>
+    <div ng-switch-when="YOUTUBE">
+        <div ng-include="model.widgetUrl(model.widget)"></div>
+    </div>
+    <div ng-switch-when="HTML">
+        <div ng-include="model.widgetUrl(model.widget)"></div>
+    </div>
+    <div ng-switch-when="TEXT">
+        <div ng-include="model.widgetUrl(model.widget)"></div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div ng-include="'views/common/header-noSideBar.view.client.html'"></div>
+
+<div class="container-fluid">
+    <div ng-show="model.error"
+         class="alert alert-danger">{{model.error}}
+    </div>
+    <!--<form>-->
+    <div class="form-group">
+        <label for="username">Name</label>
+        <input type="text"
+               class="form-control"
+               ng-model="model.widget.name"
+               id="username"
+               placeholder="widget name"/>
+    </div>
+    <div class="form-group">
+        <label for="text">Text</label>
+        <input type="text"
+               class="form-control"
+               ng-model="model.widget.text"
+               id="text"
+               placeholder="title"/>
+    </div>
+
+    <div class="form-group">
+        <label for="width">Size</label>
+        <select id="width"
+                ng-model="model.widget.width"
+                class="form-control"
+                ng-options="width.value as width.label for width in model.displayWidth"
+                ng-init="model.widget.width = (model.widget.width || model.defaultDisplayWidth)">
+            <!--<option ng-selected="model.widget.width == width.value">{{width.value}}</option>-->
+            <!--<option ng-selected=>{{model.defaultImageWidth}}</option>-->
+            <!--<option ng-repeat="width in model.imageWidth"-->
+            <!--ng-selected="model.widget.width == width.value">{{width.value}}</option>-->
+
+            <!--<option ng-selected="model.widget.width=='100%'">100%</option>-->
+            <!--<option ng-selected="model.widget.width=='80%'">80%</option>-->
+            <!--<option ng-selected="model.widget.width=='60%'">60%</option>-->
+            <!--<option ng-selected="model.widget.width=='40%'">40%</option>-->
+            <!--<option ng-selected="model.widget.width=='20%'">20%</option>-->
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="URL">URL</label>
+        <input type="url"
+               class="form-control"
+               ng-model="model.widget.url"
+               id="URL"
+               placeholder="http://"/>
+        <a class="btn btn-info btn-block"
+           ng-click="model.goSearchImg()">
+            Search Image on Flickr</a>
+    </div>
+
+    <div class="form-group">
+        <label for="file">Upload</label>
+        <form id="file"
+              action="/api/upload"
+              method="post"
+              enctype="multipart/form-data">
+            <input name="myFile"
+                   type="file"
+                   class="form-control"
+                   accept="image/*"/>
+            <input name="width"
+                   value="{{model.widget.width}}"
+                   style="display: none"/>
+            <input name="userId"
+                   value="{{model.userId}}"
+                   style="display: none"/>
+            <input name="websiteId"
+                   value="{{model.websiteId}}"
+                   style="display: none"/>
+            <input name="pageId"
+                   value="{{model.pageId}}"
+                   style="display: none"/>
+            <input name="widgetId"
+                   value="{{model.widget._id}}"
+                   style="display: none"/>
+            <button type="submit"
+                    class="btn btn-warning btn-block">Upload Image
+            </button>
+        </form>
+    </div>
+    <!--<div class="form-group">-->
+    <!--<label for="file">Upload</label>-->
+    <!--<input id="file"-->
+    <!--multiple-->
+    <!--type="file"-->
+    <!--class="form-control"/>-->
+    <!--</div>-->
+    <!--</form>-->
+
+    <a class="btn btn-primary  btn-block"
+       ng-click="model.funcButton()">Save</a>
+    <a class="btn btn-danger  btn-block"
+       ng-show="model.edit"
+       ng-click="model.deleteWidget()">Delete</a>
+    <a class="btn btn-danger  btn-block"
+       ng-show="model.new"
+       ng-click="model.goBack()">Cancel</a>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

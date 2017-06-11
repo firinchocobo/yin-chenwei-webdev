@@ -1,0 +1,31 @@
+<div ng-include="'views/common/header-noSideBar.view.client.html'"></div>
+
+<div class="container-fluid">
+    <div ng-show="model.error"
+         class="alert alert-danger">{{model.error}}
+    </div>
+    <form>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username"
+                   type="text"
+                   ng-model="model.user.username"
+                   class="form-control"
+                   placeholder="john123"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password"
+                   type="password"
+                   ng-model="model.user.password"
+                   class="form-control"
+                   placeholder="abc123"/>
+        </div>
+    </form>
+    <a class="btn btn-primary btn-block"
+       ng-click="model.login()">Login</a>
+    <a class="btn btn-success btn-block"
+       href="#!/register">Register</a>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

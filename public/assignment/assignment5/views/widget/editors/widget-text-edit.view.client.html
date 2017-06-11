@@ -1,0 +1,70 @@
+<div ng-include="'views/common/header-noSideBar.view.client.html'"></div>
+
+<div class="container-fluid">
+    <div ng-show="model.error"
+         class="alert alert-danger">{{model.error}}
+    </div>
+
+    <div class="form-group">
+        <label for="username">Name</label>
+        <input type="text"
+               class="form-control"
+               ng-model="model.widget.name"
+               id="username"
+               placeholder="widget name"/>
+    </div>
+
+    <div class="form-group">
+        <label for="text">Text</label>
+        <input id="text"
+               ng-model="model.widget.text"
+               class="form-control"/>
+    </div>
+
+    <div class="form-group">
+    <label for="rows">Rows</label>
+    <input id="rows"
+           ng-model="model.widget.rows"
+           class="form-control"
+           type="number"/>
+    </div>
+
+    <div class="form-group">
+        <label for="placeholder">Placeholder</label>
+        <input id="placeholder"
+               ng-model="model.widget.placeholder"
+               class="form-control"/>
+    </div>
+
+    <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">
+       <input id="formatted"
+              ng-model="model.widget.formatted"
+          type="checkbox"/>
+            </span>
+        <label for="formatted" class="form-control">Formatted</label>
+    </div>
+    </div>
+
+
+       <!--<div class="form-group"-->
+             <!--ng-model="model.widget.text"-->
+             <!--text-angular-->
+             <!--ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],-->
+        <!--['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],-->
+        <!--['indent','outdent'],['html']]">-->
+        <!--</div>-->
+
+
+    <a class="btn btn-primary  btn-block"
+       ng-click="model.funcButton()">Save</a>
+    <a class="btn btn-danger  btn-block"
+       ng-show="model.edit"
+       ng-click="model.deleteWidget()">Delete</a>
+    <a class="btn btn-danger  btn-block"
+       ng-show="model.new"
+       ng-click="model.goBack()">Cancel</a>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
