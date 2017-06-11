@@ -1,5 +1,12 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/webdev');
+
+if(process.env.MLAB_USERNAME) {
+    var connectionString = 'mongodb://' +
+        process.env.MLAB_USERNAME + ":" +
+        process.env.MLAB_PASSWORD + "@ds137141.mlab.com:37141/heroku_ml3v35nc";
+}
+
+mongoose.connect(connectionString);
 mongoose.Promise = require('q').Promise;
 
 require('./services/user.service.server');
