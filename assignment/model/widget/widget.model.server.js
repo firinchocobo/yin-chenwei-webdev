@@ -11,7 +11,15 @@ widgetModel.updateWidget = updateWidget;
 widgetModel.deleteWidget = deleteWidget;
 widgetModel.reorderWidget = reorderWidget;
 
+widgetModel.deleteWidgetsForPage = deleteWidgetsForPage;
+
 module.exports = widgetModel;
+
+function deleteWidgetsForPage(pageId) {
+    return widgetModel
+        .deleteMany({_page: pageId})
+        .exec()
+}
 
 function createWidget(pageId, widget) {
     widget._page = pageId;
@@ -51,14 +59,10 @@ function updateWidget(widgetId, widget) {
 
 function deleteWidget(widgetId) {
     return widgetModel
-        .findById(widgetId)
+        .findByIdAndRemove(widgetId)
         .then(function (widget) {
-            widgetModel
-                .remove(widget)
-                .then(function () {
-                    pageModel
-                        .deleteWidget(widgetId, widget._page)
-                })
+            return pageModel
+                .deleteWidget(widgetId, widget._page)
         })
 }
 

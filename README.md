@@ -8,5 +8,6 @@ Link to assignments:
 <li>Assignment 2:<br> https://yin-chenwei-webdev.herokuapp.com/assignment/assignment2/index.html</li>
 <li>Assignment 3:<br> https://yin-chenwei-webdev.herokuapp.com/assignment/assignment3/index.html</li>
 <li>Assignment 4:<br> https://yin-chenwei-webdev.herokuapp.com/assignment/assignment4/index.html</li>
+<li>Assignment 5:<br> https://yin-chenwei-webdev.herokuapp.com/assignment/assignment5/index.html</li>
 </ul>
 </br>

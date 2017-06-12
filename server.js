@@ -10,8 +10,8 @@ app.use(app.express.static(__dirname + '/public'));
 
 //require ("./test/app.js");
 
-var mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+// var mongoose = require('mongoose');
+// mongoose.Promise = global.Promise;
 
 require('./assignment/app');
 

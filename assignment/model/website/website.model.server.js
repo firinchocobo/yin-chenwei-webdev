@@ -4,7 +4,6 @@ var websiteSchema = require('./website.schema.server');
 var websiteModel = mongoose.model('WebsiteModel', websiteSchema);
 var userModel = require('../user/user.model.server');
 
-
 websiteModel.createWebsiteForUser = createWebsiteForUser;
 websiteModel.findAllWebsitesForUser = findAllWebsitesForUser;
 websiteModel.findWebsiteById = findWebsiteById;
@@ -13,7 +12,71 @@ websiteModel.deleteWebsite = deleteWebsite;
 websiteModel.addPage = addPage;
 websiteModel.deletePage = deletePage;
 
+websiteModel.deleteWebsitesForUser = deleteWebsitesForUser;
+
 module.exports = websiteModel;
+
+function deleteWebsitesForUser(userId) {
+    var pageModel = require('../page/page.model.server');
+
+    return websiteModel
+        .find({_user: userId})
+        .then(function (websites) {
+            var webCopy = websites;
+            return websiteModel
+                .deleteMany({_user: userId})
+                .then(function () {
+                    return webCopy.forEach(function (website) {
+                        return pageModel
+                            .deletePagesForWebsite(website._id);
+                    })
+                })
+        })
+
+
+
+
+
+
+
+
+
+        // .then(function (websites) {
+        //     console.log('success - web model - find user id');
+        //     return websites.forEach(function (website) {
+        //         console.log("loop websiteid: "+website._id);
+        //         return pageModel
+        //             .deletePagesForWebsite(website._id);
+        //     })
+        // })
+        // .then(function() {
+        //     console.log('delete all website for user:' + userId);
+        //     return websiteModel.deleteMany({_user: userId})
+        //         .exec();
+        // })
+        // .then(function (websites) {
+            // console.log('success - web model - find user id');
+            // return Promise.all(websites.forEach(function (website) {
+            //     console.log("loop websiteid: "+website._id);
+            //     return pageModel
+            //         .deletePagesForWebsite(website._id);
+            // }));
+            // return mongoose.Promise.all(p)
+
+        //     var promises = websites;
+        //     for (var i = 0; i < websites.length; i++) {
+        //         pageModel.deletePagesForWebsite(websites[i]._id);
+        //     }
+        //     console.log(promises);
+        //     return mongoose.Promise.all(promises);
+        // })
+        // .then(function () {
+        //     console.log('delete all website for user:' + userId);
+        //     return websiteModel.deleteMany({_user: userId})
+        //         .exec();
+        // })
+
+}
 
 function addPage(pageId, websiteId) {
     websiteModel
@@ -61,21 +124,17 @@ function updateWebsite(websiteId, website) {
 }
 
 function deleteWebsite(websiteId) {
-    // console.log(websiteId);
-    // console.log(userId);
+    var pageModel = require('../page/page.model.server');
+
     return websiteModel
-        .findOne({_id: websiteId})
+        .findByIdAndRemove(websiteId)
         .then(function (website) {
-            // website.remove(function (err, website) {
-            //     if(err) return err;
-            //     websiteModel.findById(websiteId, function (err, website) {
-            //         console.log(website);
-            //     })
-            // });
-            websiteModel
-                .remove(website)
-                .then(function () {
-                    return userModel.deleteWebsite(website._user, websiteId);
-                });
+            return userModel
+                .deleteWebsite(website._user, websiteId);
+        })
+        .then(function () {
+            return pageModel
+                .deletePagesForWebsite(websiteId);
         });
+
 }

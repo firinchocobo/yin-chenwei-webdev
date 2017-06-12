@@ -39,8 +39,17 @@ function updateUser(userId, user) {
     delete user.password;
     return userModel.update({_id: userId}, {$set: user});
 }
+
 function deleteUser(userId) {
-    return userModel.remove({_id: userId});
+    // return userModel.remove({_id: userId});
+    var websiteModel = require('../website/website.model.server');
+
+    return userModel
+        .findByIdAndRemove(userId)
+        .then(function () {
+            return websiteModel
+                .deleteWebsitesForUser(userId);
+        })
 }
 
 function findAllUser() {

@@ -13,8 +13,58 @@ pageModel.deletePage = deletePage;
 pageModel.addWidget = addWidget;
 pageModel.deleteWidget = deleteWidget;
 
+pageModel.deletePagesForWebsite = deletePagesForWebsite;
+
 module.exports = pageModel;
 
+function deletePagesForWebsite(websiteId) {
+    var widgetModel = require('../widget/widget.model.server');
+
+    return pageModel
+        .find({_website: websiteId})
+        .then(function (pages) {
+            var pageCopy = pages;
+            return pageModel
+                .deleteMany({_website: websiteId})
+                .then(function () {
+                    return pageCopy.forEach(function (page) {
+                        return widgetModel
+                            .deleteWidgetsForPage(page._id);
+                    })
+                })
+        })
+    //
+    // return pageModel
+    //     .find({_website: websiteId})
+    //     .exec()
+    //     .then(function (pages) {
+    //         // console.log('success - page model - find pages with id')
+    //         // return Promise.all( pages.forEach(function (page) {
+    //         //     console.log("loop pageid: "+page._id)
+    //         //     return widgetModel.deleteWidgetsForPage(page._id);
+    //         // }));
+    //         // return mongoose.Promise.all(p);
+    //
+    //         return pages.map(function (page) {
+    //             return widgetModel.deleteWidgetsForPage(page._id).then(function () {
+    //                 console.log(promises[i]);
+    //                 return Promise.resolve(promises[i]);
+    //             })
+    //         });
+    //         // for(var i = 0; i < pages.length; i++) {
+    //         //     widgetModel.deleteWidgetsForPage(pages[i]._id);
+    //         //     Promise.resolve(promises[i]);
+    //         // }
+    //
+    //     })
+    //     .then(function() {
+    //         console.log('delete all website for user:' + userId);
+    //         return websiteModel.deleteMany({_user: userId})
+    //             .exec();
+    //     })
+
+
+}
 function addWidget(widgetId, pageId) {
     return pageModel
         .findById(pageId)
@@ -59,14 +109,17 @@ function updatePage(pageId, page) {
 }
 
 function deletePage(pageId) {
+    var widgetModel = require('../widget/widget.model.server');
+
     return pageModel
-        .findById(pageId)
+        .findByIdAndRemove(pageId)
         .then(function (page) {
-            pageModel
-                .remove(page)
-                .then(function () {
-                    return websiteModel.deletePage(page._id, page._website);
-                })
+            return websiteModel
+                .deletePage(pageId, page._website);
         })
+        .then(function () {
+            return widgetModel
+                .deleteWidgetsForPage(pageId);
+        });
 }
 
