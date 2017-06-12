@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var connectionString = 'mongodb://localhost/webdev';
-if(process.env.MLAB_USERNAME) {
+if (process.env.MLAB_USERNAME) {
     connectionString = 'mongodb://' +
         process.env.MLAB_USERNAME + ":" +
         process.env.MLAB_PASSWORD + "@ds137141.mlab.com:37141/heroku_ml3v35nc";

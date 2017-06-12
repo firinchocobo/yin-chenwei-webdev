@@ -18,7 +18,6 @@ module.exports = userModel;
 
 function createUser(user) {
     //return a promise
-    // console.log(user);
     return userModel.create(user);
 }
 
@@ -41,7 +40,6 @@ function updateUser(userId, user) {
 }
 
 function deleteUser(userId) {
-    // return userModel.remove({_id: userId});
     var websiteModel = require('../website/website.model.server');
 
     return userModel
@@ -61,7 +59,6 @@ function addWebsite(userId, websiteId) {
         .findById(userId)
         .then(function (user) {
             user.websites.push(websiteId);
-            // console.log(user.websites);
             return user.save();
         });
 }

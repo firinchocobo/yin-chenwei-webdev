@@ -4,7 +4,6 @@ var pageSchema = require('./page.schema.server');
 var pageModel = mongoose.model('PageModel', pageSchema);
 var websiteModel = require('../website/website.model.server');
 
-
 pageModel.createPage = createPage;
 pageModel.findAllPagesForWebsite = findAllPagesForWebsite;
 pageModel.findPageById = findPageById;
@@ -12,7 +11,6 @@ pageModel.updatePage = updatePage;
 pageModel.deletePage = deletePage;
 pageModel.addWidget = addWidget;
 pageModel.deleteWidget = deleteWidget;
-
 pageModel.deletePagesForWebsite = deletePagesForWebsite;
 
 module.exports = pageModel;
@@ -33,38 +31,8 @@ function deletePagesForWebsite(websiteId) {
                     })
                 })
         })
-    //
-    // return pageModel
-    //     .find({_website: websiteId})
-    //     .exec()
-    //     .then(function (pages) {
-    //         // console.log('success - page model - find pages with id')
-    //         // return Promise.all( pages.forEach(function (page) {
-    //         //     console.log("loop pageid: "+page._id)
-    //         //     return widgetModel.deleteWidgetsForPage(page._id);
-    //         // }));
-    //         // return mongoose.Promise.all(p);
-    //
-    //         return pages.map(function (page) {
-    //             return widgetModel.deleteWidgetsForPage(page._id).then(function () {
-    //                 console.log(promises[i]);
-    //                 return Promise.resolve(promises[i]);
-    //             })
-    //         });
-    //         // for(var i = 0; i < pages.length; i++) {
-    //         //     widgetModel.deleteWidgetsForPage(pages[i]._id);
-    //         //     Promise.resolve(promises[i]);
-    //         // }
-    //
-    //     })
-    //     .then(function() {
-    //         console.log('delete all website for user:' + userId);
-    //         return websiteModel.deleteMany({_user: userId})
-    //             .exec();
-    //     })
-
-
 }
+
 function addWidget(widgetId, pageId) {
     return pageModel
         .findById(pageId)

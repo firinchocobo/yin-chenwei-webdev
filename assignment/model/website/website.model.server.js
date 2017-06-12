@@ -11,7 +11,6 @@ websiteModel.updateWebsite = updateWebsite;
 websiteModel.deleteWebsite = deleteWebsite;
 websiteModel.addPage = addPage;
 websiteModel.deletePage = deletePage;
-
 websiteModel.deleteWebsitesForUser = deleteWebsitesForUser;
 
 module.exports = websiteModel;
@@ -32,50 +31,6 @@ function deleteWebsitesForUser(userId) {
                     })
                 })
         })
-
-
-
-
-
-
-
-
-
-        // .then(function (websites) {
-        //     console.log('success - web model - find user id');
-        //     return websites.forEach(function (website) {
-        //         console.log("loop websiteid: "+website._id);
-        //         return pageModel
-        //             .deletePagesForWebsite(website._id);
-        //     })
-        // })
-        // .then(function() {
-        //     console.log('delete all website for user:' + userId);
-        //     return websiteModel.deleteMany({_user: userId})
-        //         .exec();
-        // })
-        // .then(function (websites) {
-            // console.log('success - web model - find user id');
-            // return Promise.all(websites.forEach(function (website) {
-            //     console.log("loop websiteid: "+website._id);
-            //     return pageModel
-            //         .deletePagesForWebsite(website._id);
-            // }));
-            // return mongoose.Promise.all(p)
-
-        //     var promises = websites;
-        //     for (var i = 0; i < websites.length; i++) {
-        //         pageModel.deletePagesForWebsite(websites[i]._id);
-        //     }
-        //     console.log(promises);
-        //     return mongoose.Promise.all(promises);
-        // })
-        // .then(function () {
-        //     console.log('delete all website for user:' + userId);
-        //     return websiteModel.deleteMany({_user: userId})
-        //         .exec();
-        // })
-
 }
 
 function addPage(pageId, websiteId) {
@@ -108,10 +63,10 @@ function createWebsiteForUser(userId, website) {
 }
 
 function findAllWebsitesForUser(userId) {
-   return websiteModel
-       .find({_user:userId})
-       .populate('_user')
-       .exec();
+    return websiteModel
+        .find({_user: userId})
+        .populate('_user')
+        .exec();
 }
 
 function findWebsiteById(websiteId) {
@@ -136,5 +91,4 @@ function deleteWebsite(websiteId) {
             return pageModel
                 .deletePagesForWebsite(websiteId);
         });
-
 }

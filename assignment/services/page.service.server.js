@@ -2,12 +2,6 @@ const app = require('../../express');
 
 var pageModel = require('../model/page/page.model.server');
 
-// var pages = [
-//     {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem"},
-//     {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem"},
-//     {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem"}
-// ];
-
 app.post('/api/website/:websiteId/page', createPage);
 app.get('/api/website/:websiteId/page', findAllPagesForWebsite);
 app.get('/api/page/:pageId', findPageById);
@@ -24,12 +18,6 @@ function createPage(req, res) {
         }, function () {
             res.sendStatus(500);
         })
-    // page._id = (new Date()).getTime() + "";
-    // page.websiteId = websiteId;
-    // page.created = new Date();
-    // page.accessed = new Date();
-    // pages.push(page);
-    // res.sendStatus(200);
 }
 
 function findAllPagesForWebsite(req, res) {
@@ -41,13 +29,6 @@ function findAllPagesForWebsite(req, res) {
         }, function () {
             res.sendStatus(500);
         })
-    // var result = [];
-    // for (var i in pages) {
-    //     if (pages[i].websiteId === websiteId) {
-    //         result.push(pages[i]);
-    //     }
-    // }
-    // res.json(result);
 }
 
 function findPageById(req, res) {
@@ -59,14 +40,6 @@ function findPageById(req, res) {
         }, function () {
             res.sendStatus(500);
         })
-    // var page = pages.find(function (page) {
-    //     return page._id === pageId;
-    // });
-    // if (page) {
-    //     res.json(page);
-    // } else {
-    //     res.sendStatus(404);
-    // }
 }
 
 function updatePage(req, res) {
@@ -79,15 +52,6 @@ function updatePage(req, res) {
         }, function () {
             res.sendStatus(500);
         })
-    // for (var i in pages) {
-    //     if (pages[i]._id === pageId) {
-    //         pages[i] = page;
-    //         pages[i].accessed = new Date();
-    //         res.sendStatus(200);
-    //         return;
-    //     }
-    // }
-    // res.sendStatus(404);
 }
 
 function deletePage(req, res) {
@@ -99,12 +63,4 @@ function deletePage(req, res) {
         }, function () {
             res.sendStatus(500);
         })
-    // for (var i in pages) {
-    //     if (pages[i]._id === pageId) {
-    //         pages.splice(i, 1);
-    //         res.sendStatus(200);
-    //         return;
-    //     }
-    // }
-    // res.sendStatus(404);
 }

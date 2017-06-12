@@ -86,8 +86,8 @@ a:focus, a:hover {
     height: 100%;
 }
 
-
 .wd-widget {
+    min-height: 30px;
     margin-bottom: 10px;
 }
 
@@ -106,12 +106,12 @@ a:focus, a:hover {
 }
 
 .wd-widget a:hover,
-.wd-widget a:focus{
+.wd-widget a:focus {
     color: #23527c;
 }
 
-#filckrImage{
-    padding-top:10px;
+#filckrImage {
+    padding-top: 10px;
     padding-bottom: 10px;
 }
 

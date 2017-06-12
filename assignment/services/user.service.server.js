@@ -1,13 +1,6 @@
 var app = require('../../express');
 var userModel = require('../model/user/user.model.server');
 
-// var users = [
-//     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
-//     {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
-//     {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
-//     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
-// ];
-
 //for dynamic data
 
 //:userId :path param
@@ -31,17 +24,9 @@ function findUserById(req, res) {
         .findUserById(userId)
         .then(function (user) {
             res.json(user);
-        }, function (err) {
-            res.send(err);
+        }, function () {
+            res.sendStatus(500);
         });
-    // var user = users.find(function (user) {
-    //     return user._id === userId;
-    // });
-    // if (user) {
-    //     res.json(user);
-    //     return;
-    // }
-    // res.sendStatus(404);
 }
 
 function createUser(req, res) {
@@ -50,12 +35,9 @@ function createUser(req, res) {
         .createUser(user)
         .then(function (user) {
             res.json(user);
-        }, function (err) {
-            res.send(err);
+        }, function () {
+            res.sendStatus(500);
         });
-    // user._id = (new Date()).getTime() + "";
-    // users.push(user);
-    // res.json(user);
 }
 
 function updateUser(req, res) {
@@ -65,17 +47,9 @@ function updateUser(req, res) {
         .updateUser(userId, user)
         .then(function () {
             res.sendStatus(200);
-        }, function (err) {
-            res.send(err);
-        })
-    // for (var i in users) {
-    //     if (users[i]._id === userId) {
-    //         users[i] = user;
-    //         res.sendStatus(200);
-    //         return;
-    //     }
-    // }
-    // res.sendStatus(404);
+        }, function () {
+            res.sendStatus(500);
+        });
 }
 
 function deleteUser(req, res) {
@@ -84,17 +58,9 @@ function deleteUser(req, res) {
         .deleteUser(userId)
         .then(function () {
             res.sendStatus(200);
-        }, function (err) {
-            res.send(err);
-        })
-    // for (var i in users) {
-    //     if (users[i]._id === userId) {
-    //         users.splice(i, 1);
-    //         res.sendStatus(200);
-    //         return;
-    //     }
-    // }
-    // res.sendStatus(404);
+        }, function () {
+            res.sendStatus(500);
+        });
 }
 
 
@@ -108,18 +74,9 @@ function findUserByUsername(username, res) {
             } else {
                 res.sendStatus(404);
             }
-        }, function (err) {
-            res.send(err);
+        }, function () {
+            res.sendStatus(500);
         });
-    // for (var i in users) {
-    //     if (users[i].username === username) {
-    //         //console.log(username);
-    //         res.json(users[i]);
-    //         // res.sendStatus(200);
-    //         return;
-    //     }
-    // }
-    // res.sendStatus(404);
 }
 
 function findUserByCredentials(username, password, res) {
@@ -133,25 +90,9 @@ function findUserByCredentials(username, password, res) {
             } else {
                 res.sendStatus(404);
             }
-        }, function (err) {
-            res.send(err);
+        }, function () {
+            res.sendStatus(500);
         });
-    // for (var i in users) {
-    //     var userI = users[i];
-    //     if (userI.username === username && userI.password === password) {
-    //         res.json(userI);
-    //         // res.sendStatus(200);
-    //         return;
-    //     } else if (userI.username === username && userI.password !== password) {
-    //         // console.log(users);
-    //         res.status(404).json({error: 'something is wrong'});
-    //         // res.status(404).send("incorrect password");
-    //         // res.sendStatus(404);
-    //
-    //         return;
-    //     }
-    // }
-    // res.sendStatus(404);
 }
 
 function findAllUsers(req, res) {
