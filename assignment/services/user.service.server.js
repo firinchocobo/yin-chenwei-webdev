@@ -1,17 +1,18 @@
 var app = require('../../express');
+var bcrypt = require("bcrypt-nodejs");
 var userModel = require('../model/user/user.model.server');
 
-var facebookConfig = {
-    clientID: process.env.FACEBOOK_CLIENT_ID,
-    clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL: process.env.FACEBOOK_CALLBACK_URL
-};
-
 // var facebookConfig = {
-//     clientID: '231190967393836',
-//     clientSecret: '86df9807f77de6bc401e234b6f618371',
-//     callbackURL: '/auth/facebook/callback'
+//     clientID: process.env.FACEBOOK_CLIENT_ID,
+//     clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+//     callbackURL: process.env.FACEBOOK_CALLBACK_URL
 // };
+
+var facebookConfig = {
+    clientID: '231190967393836',
+    clientSecret: '86df9807f77de6bc401e234b6f618371',
+    callbackURL: '/auth/facebook/callback'
+};
 
 
 var passport = require('passport');
@@ -59,6 +60,8 @@ function facebookStrategy(token, refreshToken, profile, done) {
 
 function register(req, res) {
     var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
+    // console.log(user.password);
     userModel
         .createUser(user)
         .then(function (user) {
@@ -104,9 +107,9 @@ function deserializeUser(user, done) {
 //callback function in localStrategy to go back to passport
 function localStrategy(username, password, done) {
     userModel
-        .findUserByCredentials(username, password)
+        .findUserByUsername(username)
         .then(function (user) {
-            if(user) {
+            if(user && bcrypt.compareSync(password, user.password)) {
                 done(null, user);
             } else {
                 done(null, false);
