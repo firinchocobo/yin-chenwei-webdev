@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("PageEditController", PageEditController);
 
-    function PageEditController($location, $routeParams, pageService) {
+    function PageEditController($location, currentUser, $routeParams, pageService) {
 
         var model = this;
 
@@ -13,7 +13,7 @@
         model.funcButton = funcButton;
         model.sideFuncButton = sideFuncButton;
 
-        model.userId = $routeParams.uid;
+        model.userId = currentUser._id;
         model.websiteId = $routeParams.wid;
         model.pageId = $routeParams.pid;
 
@@ -42,7 +42,7 @@
             pageService
                 .updatePage(model.pageId, model.page)
                 .then(function () {
-                    $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page");
+                    $location.path("/website/" + model.websiteId + "/page");
                 }, function () {
                     model.error = "Can't update at this moment, try again!";
                 });
@@ -52,18 +52,18 @@
             pageService
                 .deletePage(model.pageId)
                 .then(function () {
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + "/page");
+                    $location.url('/website/' + model.websiteId + "/page");
                 }, function () {
                     model.error = "Can't delete website at this moment, try again!";
                 });
         }
 
         function goBack() {
-            $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page");
+            $location.path("/website/" + model.websiteId + "/page");
         }
 
         function sideFuncButton() {
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + "/page/new");
+            $location.url('/website/' + model.websiteId + "/page/new");
         }
 
         function funcButton() {

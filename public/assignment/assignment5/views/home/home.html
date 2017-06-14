@@ -19,10 +19,10 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="">Home</a></li>
             <li><a href="">Admin</a></li>
-            <li><a href="#!/login">Login</a></li>
-            <li><a href="#!/register">Register</a></li>
-            <li><a href="">Profile</a></li>
-            <li><a href="">Logout</a></li>
+            <li ng-show="!model.userId"><a href="#!/login">Login</a></li>
+            <li ng-show="!model.userId"><a href="#!/register">Register</a></li>
+            <li ng-show="model.userId"><a href="#!/profile">Profile</a></li>
+            <li ng-show="model.userId"><a ng-click="model.logout()">Logout</a></li>
         </ul>
     </div><!--/.navbar-collapse -->
 </nav>

@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("WebsiteEditController", WebsiteEditController);
 
-    function WebsiteEditController($location, $routeParams, websiteService) {
+    function WebsiteEditController($location, currentUser, $routeParams, websiteService) {
 
         var model = this;
 
@@ -13,7 +13,7 @@
         model.funcButton = funcButton;
         model.sideFuncButton = sideFuncButton;
 
-        model.userId = $routeParams.uid;
+        model.userId = currentUser._id;
         model.websiteId = $routeParams.wid;
 
         function init() {
@@ -41,7 +41,7 @@
             websiteService
                 .updateWebsite(model.websiteId, model.website)
                 .then(function () {
-                    $location.path("/user/" + model.userId + "/website");
+                    $location.path("/website");
                 }, function () {
                     model.error = "Can't update at this moment, try again!";
                 });
@@ -51,18 +51,18 @@
             websiteService
                 .deleteWebsite(model.websiteId)
                 .then(function () {
-                    $location.url('/user/' + model.userId + '/website');
+                    $location.url('/website');
                 }, function () {
                     model.error = "Can't delete website at this moment, try again!";
                 });
         }
 
         function goBack() {
-            $location.path("/user/" + model.userId + "/website");
+            $location.path("/website");
         }
 
         function sideFuncButton() {
-            $location.path("/user/" + model.userId + "/website/new");
+            $location.path("/website/new");
         }
 
         function funcButton() {

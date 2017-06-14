@@ -8,7 +8,9 @@ body {
     padding-top: 60px;
     padding-bottom: 60px;
 }
-
+.jumbotron {
+    margin-top: -10px;
+}
 li.list-group-item > div.row > div {
     white-space: nowrap;
     overflow: hidden;

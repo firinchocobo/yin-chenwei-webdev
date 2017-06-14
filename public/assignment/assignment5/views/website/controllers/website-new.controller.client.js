@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("WebsiteNewController", WebsiteNewController);
 
-    function WebsiteNewController($location, $routeParams, websiteService) {
+    function WebsiteNewController($location, currentUser, $routeParams, websiteService) {
 
         var model = this;
 
@@ -12,8 +12,10 @@
         model.funcButton = funcButton;
         model.sideFuncButton = sideFuncButton;
 
-        model.userId = $routeParams.uid;
+        // model.userId = $routeParams.uid;
+        model.userId = currentUser._id;
         model.websiteId = $routeParams.wid;
+
 
         function init() {
             websiteService
@@ -33,12 +35,12 @@
             websiteService
                 .createWebsite(model.userId, model.website)
                 .then(function () {
-                    $location.path("/user/" + model.userId + "/website");
+                    $location.path("/website");
                 })
         }
 
         function goBack() {
-            $location.path("/user/" + model.userId + "/website");
+            $location.path("/website");
         }
 
         function sideFuncButton() {

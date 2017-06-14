@@ -21,16 +21,19 @@
                    class="form-control"
                    placeholder="abc123"/>
         </div>
+        <div class="form-group">
+            <label for="reenter-password">Password</label>
+            <input id="reenter-password"
+                   type="password"
+                   ng-model="model.user.reEnterPassword"
+                   class="form-control"
+                   placeholder="verify password"/>
+        </div>
     </form>
     <a class="btn btn-primary btn-block"
-       ng-click="model.login()">Login</a>
-    <a href="/auth/facebook"
-       class="btn btn-info btn-block">
-        <span class="fa fa-facebook"></span>
-        Facebook
-    </a>
-    <a class="btn btn-success btn-block"
-       href="#!/register">Register</a>
+       ng-click="model.register()">Register</a>
+    <a class="btn btn-danger  btn-block"
+       href="#!/login">Cancel</a>
 </div>
 
 <div ng-include="'views/common/footer.view.client.html'"></div>

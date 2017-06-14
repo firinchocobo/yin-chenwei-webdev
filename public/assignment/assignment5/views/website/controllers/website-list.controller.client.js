@@ -3,14 +3,14 @@
         .module("WebAppMaker")
         .controller("WebsiteListController", WebsiteListController);
 
-    function WebsiteListController($location, $routeParams, websiteService) {
+    function WebsiteListController($location, currentUser, $routeParams, websiteService) {
 
         var model = this;
 
         model.goBack = goBack;
         model.funcButton = funcButton;
 
-        model.userId = $routeParams.uid;
+        model.userId = currentUser._id;
 
         function init() {
             websiteService
@@ -25,11 +25,11 @@
         init();
 
         function goBack() {
-            $location.path("/user/" + model.userId);
+            $location.path("/profile");
         }
 
         function funcButton() {
-            $location.path("/user/" + model.userId + "/website/new");
+            $location.path("/website/new");
         }
     }
 })();

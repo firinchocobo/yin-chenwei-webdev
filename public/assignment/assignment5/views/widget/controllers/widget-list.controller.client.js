@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("WidgetListController", WidgetListController);
 
-    function WidgetListController($location, $sce, $routeParams, widgetService) {
+    function WidgetListController($location, $sce, currentUser, $routeParams, widgetService) {
 
         var model = this;
 
@@ -13,7 +13,7 @@
         model.goBack = goBack;
         model.funcButton = funcButton;
 
-        model.userId = $routeParams.uid;
+        model.userId = currentUser._id;
         model.websiteId = $routeParams.wid;
         model.pageId = $routeParams.pid;
         //console.log(model.pageId);
@@ -48,11 +48,11 @@
         }
 
         function goBack() {
-            $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page");
+            $location.path("/website/" + model.websiteId + "/page");
         }
 
         function funcButton() {
-            $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/new");
+            $location.path("/website/" + model.websiteId + "/page/" + model.pageId + "/widget/new");
         }
     }
 })();

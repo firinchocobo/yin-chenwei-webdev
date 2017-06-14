@@ -42,7 +42,7 @@ function uploadImage(req, res) {
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
 
-    var callbackUrl = "/assignment/assignment5/index.html#!/user/" + userId + "/website/" + websiteId +
+    var callbackUrl = "/assignment/assignment5/index.html#!/website/" + websiteId +
         "/page/" + pageId + "/widget/" + widgetId;
 
     if (!myFile) {
