@@ -8,8 +8,6 @@
         <div class="form-group">
             <label for="username">Username</label>
             <input id="username"
-                   autocorrect="off"
-                   autocapitalize="off"
                    type="text"
                    ng-model="model.user.username"
                    class="form-control"
@@ -26,16 +24,6 @@
     </form>
     <a class="btn btn-primary btn-block"
        ng-click="model.login()">Login</a>
-    <a href="/auth/facebook"
-       class="btn btn-info btn-block">
-        <span class="fa fa-facebook"></span>
-        Facebook
-    </a>
-    <a href="/auth/google"
-       class="btn btn-danger btn-block">
-        <span class="fa fa-google-plus"></span>
-        Google
-    </a>
     <a class="btn btn-success btn-block"
        href="#!/register">Register</a>
 </div>

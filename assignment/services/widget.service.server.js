@@ -1,7 +1,7 @@
 const app = require('../../express');
 
 var multer = require('multer'); // npm install multer --save
-var upload = multer({dest: __dirname + '/../../public/assignment/assignment5/uploads'});
+var upload = multer({dest: __dirname + '/../../public/assignment/assignment6/uploads'});
 
 var widgetModel = require('../model/widget/widget.model.server');
 
@@ -42,7 +42,7 @@ function uploadImage(req, res) {
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
 
-    var callbackUrl = "/assignment/assignment5/index.html#!/website/" + websiteId +
+    var callbackUrl = "/assignment/assignment6/index.html#!/website/" + websiteId +
         "/page/" + pageId + "/widget/" + widgetId;
 
     if (!myFile) {
@@ -66,7 +66,7 @@ function changeUrlForWidget(widgetId, filename) {
     widgetModel
         .findWidgetById(widgetId)
         .then(function (widget) {
-            widget.url = '/assignment/assignment5/uploads/' + filename;
+            widget.url = '/assignment/assignment6/uploads/' + filename;
             return widgetModel
                 .updateWidget(widgetId, widget);
         });

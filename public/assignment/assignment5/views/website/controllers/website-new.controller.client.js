@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("WebsiteNewController", WebsiteNewController);
 
-    function WebsiteNewController($location, currentUser, $routeParams, websiteService) {
+    function WebsiteNewController($location, $routeParams, websiteService) {
 
         var model = this;
 
@@ -12,10 +12,8 @@
         model.funcButton = funcButton;
         model.sideFuncButton = sideFuncButton;
 
-        // model.userId = $routeParams.uid;
-        model.userId = currentUser._id;
+        model.userId = $routeParams.uid;
         model.websiteId = $routeParams.wid;
-
 
         function init() {
             websiteService
@@ -23,7 +21,6 @@
                 .then(function (websites) {
                     model.websites = websites;
                 });
-            model.website = {};
             model.sideName = "Websites";
             model.currentName = "New Website";
             model.sideButtonPattern = "glyphicon glyphicon-refresh";
@@ -33,19 +30,15 @@
         init();
 
         function createWebsite() {
-            if (model.website.name) {
-                websiteService
-                    .createWebsite(model.userId, model.website)
-                    .then(function () {
-                        $location.path("/website");
-                    });
-            } else {
-                model.error = "Website name is required";
-            }
+            websiteService
+                .createWebsite(model.userId, model.website)
+                .then(function () {
+                    $location.path("/user/" + model.userId + "/website");
+                })
         }
 
         function goBack() {
-            $location.path("/website");
+            $location.path("/user/" + model.userId + "/website");
         }
 
         function sideFuncButton() {

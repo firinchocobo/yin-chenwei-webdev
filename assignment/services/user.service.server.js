@@ -51,15 +51,15 @@ app.post('/api/logout',logout);
 app.post('/api/register', register);
 app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    successRedirect: '/assignment/assignment5/index.html#!/profile',
-    failureRedirect: '/assignment/assignment5/index.html#!/login'
+    successRedirect: '/assignment/assignment6/index.html#!/profile',
+    failureRedirect: '/assignment/assignment6/index.html#!/login'
 }));
 app.get('/api/checkadmin', checkAdmin);
 app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 app.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/assignment/assignment5/index.html#!/profile',
-        failureRedirect: '/assignment/assignment5/index.html#!/login'
+        successRedirect: '/assignment/assignment6/index.html#!/profile',
+        failureRedirect: '/assignment/assignment6/index.html#!/login'
     }));
 
 function googleStrategy(token, refreshToken, profile, done) {

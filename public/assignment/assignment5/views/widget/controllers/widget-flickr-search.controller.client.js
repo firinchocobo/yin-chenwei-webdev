@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("FlickrImageSearchController", FlickrImageSearchController);
 
-    function FlickrImageSearchController($location, currentUser, $routeParams, flickrService, widgetService) {
+    function FlickrImageSearchController($location, $routeParams, flickrService, widgetService) {
 
         var model = this;
 
@@ -12,7 +12,7 @@
         model.selectPhoto = selectPhoto;
 
         model.currentName = "Search Flickr";
-        model.userId = currentUser._id;
+        model.userId = $routeParams.uid;
         model.websiteId = $routeParams.wid;
         model.pageId = $routeParams.pid;
         model.widgetId = $routeParams.wgid;
@@ -42,7 +42,7 @@
                     widgetService
                         .updateWidget(model.widgetId, model.widget)
                         .then(function () {
-                            $location.path("/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + model.widgetId);
+                            $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + model.widgetId);
                         }, function () {
                             model.error = "Can't assign the selected photo to the widget at this moment, try again!";
                         });
@@ -52,7 +52,7 @@
         }
 
         function goBack() {
-            $location.path("/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + model.widgetId);
+            $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + model.widgetId);
         }
     }
 })();

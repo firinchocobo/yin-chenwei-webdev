@@ -11,56 +11,6 @@
         this.findUserByCredentials = findUserByCredentials;
         this.updateUser = updateUser;
         this.deleteUser = deleteUser;
-        this.login = login;
-        this.loggedIn = loggedIn;
-        this.logout = logout;
-        this.register = register;
-        this.checkAdmin = checkAdmin;
-        this.findAllUsers = findAllUsers;
-
-
-        function checkAdmin() {
-            var url = '/api/checkadmin';
-            return $http.get(url)
-                .then(function (response) {
-                    return response.data;
-                });
-        }
-
-        function register(user) {
-            var url = '/api/register';
-            return $http.post(url, user)
-                .then(function (response) {
-                    return response.data;
-                })
-        }
-        function logout() {
-            var url = '/api/logout';
-            return $http.post(url)
-                .then(function (response) {
-                    return response.data;
-                })
-        }
-
-        function loggedIn() {
-            var url = '/api/loggedin';
-            return $http.get(url)
-                .then(function (response) {
-                    return response.data;
-                });
-        }
-
-        function login(username, password) {
-            var url = '/api/login';
-            var credentials = {
-                username: username,
-                password: password
-            };
-            return $http.post(url, credentials)
-                .then(function (response) {
-                    return response.data;
-                });
-        }
 
         function createUser(user) {
             var url = '/api/user';
@@ -105,14 +55,6 @@
         function deleteUser(userId) {
             var url = '/api/user/' + userId;
             return $http.delete(url)
-                .then(function (response) {
-                    return response.data;
-                });
-        }
-
-        function findAllUsers() {
-            var url = '/api/user';
-            return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });

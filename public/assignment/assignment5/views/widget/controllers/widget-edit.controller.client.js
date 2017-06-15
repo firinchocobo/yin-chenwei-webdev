@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("WidgetEditController", WidgetEditController);
 
-    function WidgetEditController($location, currentUser, $routeParams, widgetService) {
+    function WidgetEditController($location, $routeParams, widgetService) {
 
         var model = this;
 
@@ -13,7 +13,7 @@
         model.goBack = goBack;
         model.goSearchImg = goSearchImg;
 
-        model.userId = currentUser._id;
+        model.userId = $routeParams.uid;
         model.websiteId = $routeParams.wid;
         model.pageId = $routeParams.pid;
         model.widgetId = $routeParams.wgid;
@@ -43,7 +43,7 @@
                 .then(function (widget) {
                     model.widget = widget;
                 }, function () {
-                    $location.path("/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+                    $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
                 });
             model.funcButtonPattern = "glyphicon glyphicon-ok";
             checkIfNew();
@@ -65,7 +65,7 @@
             widgetService
                 .deleteWidget(model.widgetId)
                 .then(function () {
-                    $location.path("/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+                    $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
                 }, function () {
                     model.error = "Can't delete website at this moment, try again!";
                 });
@@ -76,24 +76,20 @@
         }
 
         function funcButton() {
-            if (model.widget.name) {
-                widgetService
-                    .updateWidget(model.widgetId, model.widget)
-                    .then(function () {
-                        $location.path("/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
-                    }, function () {
-                        model.error = "Can't update website at this moment, try again!";
-                    });
-            } else {
-                model.error = "Widget name is required";
-            }
+            widgetService
+                .updateWidget(model.widgetId, model.widget)
+                .then(function () {
+                    $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+                }, function () {
+                    model.error = "Can't update website at this moment, try again!";
+                });
         }
 
         function goBack() {
             if (model.new) {
                 deleteWidget();
             } else {
-                $location.path("/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+                $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
             }
         }
 
@@ -101,7 +97,7 @@
             widgetService
                 .updateWidget(model.widgetId, model.widget)
                 .then(function () {
-                    $location.path("/website/" + model.websiteId + "/page/" + model.pageId + "/widget/"
+                    $location.path("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/"
                         + model.widgetId + "/search");
                 }, function () {
                     model.error = "Can't update website at this moment, try again!";

@@ -9,6 +9,7 @@
         model.register = register;
         model.goBack = goBack;
 
+
         model.currentName = "Register";
 
         function init() {
@@ -45,14 +46,10 @@
                             password: model.user.password
                         };
                         return userService
-                            .register(newUser)
-                            .then(function () {
-                                $location.path('/profile');
-                            })
-                            // .createUser(newUser)
-                            // .then(function (user) {
-                            //     $location.url('/user/' + user._id);
-                            // });
+                            .createUser(newUser)
+                            .then(function (user) {
+                                $location.url('/user/' + user._id);
+                            });
                     });
         }
 

@@ -31,12 +31,12 @@
                 return;
             }
             userService
-                .login(model.user.username, model.user.password)
+                .findUserByCredentials(model.user.username, model.user.password)
                 .then(
                     function (found) {
                         if (found !== null) {
                             // console.log('sucess')
-                            $location.url("/profile");
+                            $location.url("/user/" + found._id);
                         }
                     }, function (found) {
                         // console.log(found);

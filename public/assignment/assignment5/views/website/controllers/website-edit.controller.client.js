@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("WebsiteEditController", WebsiteEditController);
 
-    function WebsiteEditController($location, currentUser, $routeParams, websiteService) {
+    function WebsiteEditController($location, $routeParams, websiteService) {
 
         var model = this;
 
@@ -13,7 +13,7 @@
         model.funcButton = funcButton;
         model.sideFuncButton = sideFuncButton;
 
-        model.userId = currentUser._id;
+        model.userId = $routeParams.uid;
         model.websiteId = $routeParams.wid;
 
         function init() {
@@ -38,35 +38,31 @@
         init();
 
         function updateWebsite() {
-            if(model.website.name) {
-                websiteService
-                    .updateWebsite(model.websiteId, model.website)
-                    .then(function () {
-                        $location.path("/website");
-                    }, function () {
-                        model.error = "Can't update at this moment, try again!";
-                    });
-            } else {
-                model.error = "Website name is required";
-            }
+            websiteService
+                .updateWebsite(model.websiteId, model.website)
+                .then(function () {
+                    $location.path("/user/" + model.userId + "/website");
+                }, function () {
+                    model.error = "Can't update at this moment, try again!";
+                });
         }
 
         function deleteWebsite() {
             websiteService
                 .deleteWebsite(model.websiteId)
                 .then(function () {
-                    $location.url('/website');
+                    $location.url('/user/' + model.userId + '/website');
                 }, function () {
                     model.error = "Can't delete website at this moment, try again!";
                 });
         }
 
         function goBack() {
-            $location.path("/website");
+            $location.path("/user/" + model.userId + "/website");
         }
 
         function sideFuncButton() {
-            $location.path("/website/new");
+            $location.path("/user/" + model.userId + "/website/new");
         }
 
         function funcButton() {

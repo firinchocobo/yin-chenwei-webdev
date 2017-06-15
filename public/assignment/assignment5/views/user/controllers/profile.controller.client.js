@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($location, currentUser, $routeParams, userService) {
+    function ProfileController($location, $routeParams, userService) {
 
         var model = this;
 
@@ -11,32 +11,22 @@
         model.updateProfile = updateProfile;
         model.goBack = goBack;
         model.funcButton = funcButton;
-        model.logout = logout;
 
-        model.userId = currentUser._id;
+        model.userId = $routeParams.uid;
 
         function init() {
-            // userService
-            //     .findUserById(model.userId)
-            //     .then(function (user) {
-            //         model.user = user;
-            //     }, function () {
-            //         goBack();
-            //     });
-            model.user = currentUser;
+            userService
+                .findUserById(model.userId)
+                .then(function (user) {
+                    model.user = user;
+                }, function () {
+                    goBack();
+                });
             model.currentName = "Profile";
             model.funcButtonPattern = "glyphicon glyphicon-ok";
         }
 
         init();
-
-        function logout() {
-            userService
-                .logout()
-                .then(function () {
-                    $location.path('/');
-                })
-        }
 
         function updateProfile() {
             userService
