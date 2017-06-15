@@ -39,13 +39,17 @@
         init();
 
         function updatePage() {
-            pageService
-                .updatePage(model.pageId, model.page)
-                .then(function () {
-                    $location.path("/website/" + model.websiteId + "/page");
-                }, function () {
-                    model.error = "Can't update at this moment, try again!";
-                });
+            if (model.page.name) {
+                pageService
+                    .updatePage(model.pageId, model.page)
+                    .then(function () {
+                        $location.path("/website/" + model.websiteId + "/page");
+                    }, function () {
+                        model.error = "Can't update at this moment, try again!";
+                    });
+            } else {
+                model.error = "Page name is required";
+            }
         }
 
         function deletePage() {

@@ -38,13 +38,17 @@
         init();
 
         function updateWebsite() {
-            websiteService
-                .updateWebsite(model.websiteId, model.website)
-                .then(function () {
-                    $location.path("/website");
-                }, function () {
-                    model.error = "Can't update at this moment, try again!";
-                });
+            if(model.website.name) {
+                websiteService
+                    .updateWebsite(model.websiteId, model.website)
+                    .then(function () {
+                        $location.path("/website");
+                    }, function () {
+                        model.error = "Can't update at this moment, try again!";
+                    });
+            } else {
+                model.error = "Website name is required";
+            }
         }
 
         function deleteWebsite() {

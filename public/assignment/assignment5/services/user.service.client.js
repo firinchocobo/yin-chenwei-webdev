@@ -15,6 +15,17 @@
         this.loggedIn = loggedIn;
         this.logout = logout;
         this.register = register;
+        this.checkAdmin = checkAdmin;
+        this.findAllUsers = findAllUsers;
+
+
+        function checkAdmin() {
+            var url = '/api/checkadmin';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function register(user) {
             var url = '/api/register';
@@ -94,6 +105,14 @@
         function deleteUser(userId) {
             var url = '/api/user/' + userId;
             return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findAllUsers() {
+            var url = '/api/user';
+            return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });

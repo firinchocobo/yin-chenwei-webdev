@@ -9,7 +9,13 @@ var userSchema = mongoose.Schema({
     phone: String,
     websites: [{type: mongoose.Schema.ObjectId, ref: 'WebsiteModel'}],
     dateCreated: {type: Date, default: Date.now},
-    facebook: {id: String, token: String}
+    facebook: {id: String, token: String},
+    google: {id: String, token: String},
+    role: {type: String, default: 'USER', enum: ['USER', 'ADMIN']}
+    // a user could have different roles
+    // roles: [{type: String, default: 'USER', enum: ['USER', 'ADMIN']}]
+    // need to specify the roles when create the user, default is []
+
 }, {collection: 'user'});
 
 //if require from outside, get this instance

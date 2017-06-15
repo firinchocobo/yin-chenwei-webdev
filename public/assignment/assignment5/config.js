@@ -13,6 +13,22 @@
                     currentUser: checkCurrentUser
                 }
             })
+            .when("/admin", {
+                templateUrl: "views/admin/admin.view.client.html",
+                // controller: "AdminController",
+                // controllerAs: "model",
+                // resolve: {
+                //     currentUser: checkAdmin
+                // }
+            })
+            .when("/admin/user", {
+                templateUrl: "views/admin/admin-users.view.client.html",
+                controller: "adminUsersController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
             .when("/login", {
                 templateUrl: "views/user/templates/login.view.client.html",
                 controller: "LoginController",
@@ -133,6 +149,22 @@
                 if(user === '0') {
                     deferred.reject();
                     $location.url('/login');
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function checkAdmin(userService, $q, $location) {
+        var deferred = $q.defer();
+        userService
+            .checkAdmin()
+            .then(function (user) {
+                //protect the pages that need the user
+                if(user === '0') {
+                    deferred.reject();
+                    $location.url('/');
                 } else {
                     deferred.resolve(user);
                 }

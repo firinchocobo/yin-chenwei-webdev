@@ -2,25 +2,27 @@ var app = require('../../express');
 var bcrypt = require("bcrypt-nodejs");
 var userModel = require('../model/user/user.model.server');
 
-// var facebookConfig = {
-//     clientID: process.env.FACEBOOK_CLIENT_ID,
-//     clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-//     callbackURL: process.env.FACEBOOK_CALLBACK_URL
-// };
-
 var facebookConfig = {
-    clientID: '231190967393836',
-    clientSecret: '86df9807f77de6bc401e234b6f618371',
-    callbackURL: '/auth/facebook/callback'
+    clientID: process.env.FACEBOOK_CLIENT_ID || '231190967393836',
+    clientSecret: process.env.FACEBOOK_CLIENT_SECRET || '86df9807f77de6bc401e234b6f618371',
+    callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'http://127.0.0.1:3000/auth/facebook/callback'
 };
 
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID
+    || '13631571696-3pajktjb7ivk00gvuauo2t3ciov7muhv.apps.googleusercontent.com',
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET || 'T0ghoS-VSe4tbZIZRv-VmV0N',
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL || 'http://127.0.0.1:3000/auth/google/callback'
+};
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 passport.use(new LocalStrategy(localStrategy));
 passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
@@ -31,7 +33,7 @@ passport.deserializeUser(deserializeUser);
 //another type is query param
 
 app.post('/api/user', createUser);
-app.get('/api/user', findAllUsers);
+app.get('/api/user', isAdmin, findAllUsers);
 /* can't enter this section, because all the url will go
  straight into the above */
 app.get('/api/user', findUserByCredentials);
@@ -49,13 +51,111 @@ app.post('/api/logout',logout);
 app.post('/api/register', register);
 app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    successRedirect: '/#/user',
-    failureRedirect: '/#/login'
+    successRedirect: '/assignment/assignment5/index.html#!/profile',
+    failureRedirect: '/assignment/assignment5/index.html#!/login'
 }));
+app.get('/api/checkadmin', checkAdmin);
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/assignment/assignment5/index.html#!/profile',
+        failureRedirect: '/assignment/assignment5/index.html#!/login'
+    }));
+
+function googleStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
+
+function isAdmin(req, res, next) {
+    if(req.isAuthenticated() && req.user.role === 'ADMIN') {
+        next();
+    } else {
+        res.sendStatus(401);
+    }
+}
+
+function checkAdmin(req, res) {
+    //req.user.roles.indexOf('ADMIN') > -1
+    if (req.isAuthenticated() && req.user.role === 'ADMIN') {
+        res.json(req.user);
+    } else {
+        res.send('0');
+    }
+}
+
 
 function facebookStrategy(token, refreshToken, profile, done) {
     userModel
-        .findUserByFacebookId(profile.id);
+        .findUserByFacebookId(profile.id)
+        .then(
+            function (user) {
+                if (user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newFacebookUser = {
+                        username: emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName: profile.name.familyName,
+                        email: email,
+                        facebook: {
+                            id: profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newFacebookUser);
+                }
+            },
+            function (err) {
+                if (err) {
+                    return done(err);
+                }
+            }
+        )
+        .then(
+            function (user) {
+                return done(null, user);
+            },
+            function (err) {
+                if (err) {
+                    return done(err);
+                }
+            }
+        );
 }
 
 function register(req, res) {
@@ -208,6 +308,16 @@ function findAllUsers(req, res) {
     } else if (username) {
         findUserByUsername(username, res);
     } else {
-        res.sendStatus(404);
+        userModel
+            .findAllUser()
+            .then(function (users) {
+                // console.log(users);
+                res.json(users);
+            }, function () {
+                res.sendStatus(500);
+            })
     }
+    // } else {
+    //     res.sendStatus(404);
+    // }
 }

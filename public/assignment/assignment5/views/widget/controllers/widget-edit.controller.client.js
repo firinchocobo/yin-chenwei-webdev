@@ -76,13 +76,17 @@
         }
 
         function funcButton() {
-            widgetService
-                .updateWidget(model.widgetId, model.widget)
-                .then(function () {
-                    $location.path("/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
-                }, function () {
-                    model.error = "Can't update website at this moment, try again!";
-                });
+            if (model.widget.name) {
+                widgetService
+                    .updateWidget(model.widgetId, model.widget)
+                    .then(function () {
+                        $location.path("/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+                    }, function () {
+                        model.error = "Can't update website at this moment, try again!";
+                    });
+            } else {
+                model.error = "Widget name is required";
+            }
         }
 
         function goBack() {

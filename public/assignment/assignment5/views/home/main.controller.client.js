@@ -4,12 +4,12 @@
         .controller("MainController", MainController);
 
     function MainController(currentUser, userService, $location,$route) {
-        console.log("loading controller");
-
-        console.log(currentUser);
+        // console.log("loading controller");
+        //
+        // console.log(currentUser);
         var model = this;
         model.logout = logout;
-
+        model.currentUser = currentUser;
         if (currentUser._id) {
             model.userId = currentUser._id;
         }

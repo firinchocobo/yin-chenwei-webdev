@@ -13,15 +13,21 @@ userModel.findAllUser = findAllUser;
 userModel.addWebsite = addWebsite;
 userModel.deleteWebsite = deleteWebsite;
 userModel.findUserByFacebookId = findUserByFacebookId;
+userModel.findUserByGoogleId = findUserByGoogleId;
 
 //if requires, will have access to userModel and all the function listed above
 module.exports = userModel;
+
+function findUserByGoogleId(googleId) {
+    return userModel.findOne({'google.id': googleId});
+}
 
 function findUserByFacebookId(facebookId) {
     return userModel.findOne({'facebook.id': facebookId});
 }
 
 function createUser(user) {
+    // user.role = 'USER';
     //return a promise
     return userModel.create(user);
 }

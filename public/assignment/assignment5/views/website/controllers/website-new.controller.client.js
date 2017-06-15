@@ -23,6 +23,7 @@
                 .then(function (websites) {
                     model.websites = websites;
                 });
+            model.website = {};
             model.sideName = "Websites";
             model.currentName = "New Website";
             model.sideButtonPattern = "glyphicon glyphicon-refresh";
@@ -32,11 +33,15 @@
         init();
 
         function createWebsite() {
-            websiteService
-                .createWebsite(model.userId, model.website)
-                .then(function () {
-                    $location.path("/website");
-                })
+            if (model.website.name) {
+                websiteService
+                    .createWebsite(model.userId, model.website)
+                    .then(function () {
+                        $location.path("/website");
+                    });
+            } else {
+                model.error = "Website name is required";
+            }
         }
 
         function goBack() {

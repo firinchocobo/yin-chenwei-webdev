@@ -21,6 +21,7 @@
                 .then(function (pages) {
                     model.pages = pages;
                 });
+            model.page = {};
             model.sideName = "Pages";
             model.currentName = "New Page";
             model.sideButtonPattern = "glyphicon glyphicon-refresh";
@@ -30,11 +31,15 @@
         init();
 
         function createPage() {
-            pageService
-                .createPage(model.websiteId, model.page)
-                .then(function () {
-                    $location.path("/website/" + model.websiteId + "/page");
-                })
+            if (model.page.name) {
+                pageService
+                    .createPage(model.websiteId, model.page)
+                    .then(function () {
+                        $location.path("/website/" + model.websiteId + "/page");
+                    })
+            } else {
+                model.error = "Page name is required";
+            }
         }
 
         function goBack() {
