@@ -36,12 +36,12 @@
             userService
                 .logout()
                 .then(function () {
-                  if ($location.host()!=='localhost') {
-                      url = $location.protocol()+"://" + $location.host() + "/assignment/assignment6/#!/";
-                      $location.path(url);
-                  } else {
+                  // if ($location.host()!=='localhost') {
+                  //     url = $location.protocol()+"://" + $location.host() + "/assignment/assignment6/#!/";
+                  //     $location.path(url);
+                  // } else {
                       $location.path('/');
-                  }
+
                 })
         }
 
