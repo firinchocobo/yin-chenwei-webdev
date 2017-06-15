@@ -26,6 +26,8 @@
             model.user = currentUser;
             model.currentName = "Profile";
             model.funcButtonPattern = "glyphicon glyphicon-ok";
+            // console.log($location.host()==='localhost' );
+            console.log($location.protocol());
         }
 
         init();
@@ -34,7 +36,12 @@
             userService
                 .logout()
                 .then(function () {
-                    $location.path('/');
+                  if ($location.host()!=='localhost') {
+                      url = $location.protocol()+"://" + $location.host() + "/assignment/assignment6/#!/";
+                      $location.path(url);
+                  } else {
+                      $location.path('/');
+                  }
                 })
         }
 
