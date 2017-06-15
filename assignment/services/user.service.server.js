@@ -5,14 +5,14 @@ var userModel = require('../model/user/user.model.server');
 var facebookConfig = {
     clientID: process.env.FACEBOOK_CLIENT_ID || '231190967393836',
     clientSecret: process.env.FACEBOOK_CLIENT_SECRET || '86df9807f77de6bc401e234b6f618371',
-    callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'http://127.0.0.1:3000/auth/facebook/callback'
+    callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'https://127.0.0.1:3000/auth/facebook/callback'
 };
 
 var googleConfig = {
     clientID     : process.env.GOOGLE_CLIENT_ID
     || '13631571696-3pajktjb7ivk00gvuauo2t3ciov7muhv.apps.googleusercontent.com',
     clientSecret : process.env.GOOGLE_CLIENT_SECRET || 'T0ghoS-VSe4tbZIZRv-VmV0N',
-    callbackURL  : process.env.GOOGLE_CALLBACK_URL || 'http://127.0.0.1:3000/auth/google/callback'
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL || 'https://127.0.0.1:3000/auth/google/callback'
 };
 
 var passport = require('passport');
