@@ -27,7 +27,6 @@
             model.currentName = "Profile";
             model.funcButtonPattern = "glyphicon glyphicon-ok";
             // console.log($location.host()==='localhost' );
-            console.log($location.protocol());
         }
 
         init();
