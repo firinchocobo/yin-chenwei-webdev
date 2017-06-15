@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 //store secret as environment variable
 app.use(session({
-    secret: process.env.SESSION_SECRET || "secret",
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
