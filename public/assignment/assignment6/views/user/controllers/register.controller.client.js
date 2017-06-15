@@ -25,7 +25,7 @@
             }
             if (model.user.password === null || typeof model.user.password === 'undefined'
                 || model.user.password.trim() === "") {
-                model.error = "passwords is required";
+                model.error = "password is required";
                 return;
             }
             if (model.user.password !== model.user.reEnterPassword) {
@@ -49,10 +49,10 @@
                             .then(function () {
                                 $location.path('/profile');
                             })
-                            // .createUser(newUser)
-                            // .then(function (user) {
-                            //     $location.url('/user/' + user._id);
-                            // });
+                        // .createUser(newUser)
+                        // .then(function (user) {
+                        //     $location.url('/user/' + user._id);
+                        // });
                     });
         }
 

@@ -135,7 +135,7 @@
             .loggedIn()
             .then(function (user) {
                 //resolve regardless of the current user
-                    deferred.resolve(user);
+                deferred.resolve(user);
             });
         return deferred.promise;
     }
@@ -146,7 +146,7 @@
             .loggedIn()
             .then(function (user) {
                 //protect the pages that need the user
-                if(user === '0') {
+                if (user === '0') {
                     deferred.reject();
                     $location.url('/login');
                 } else {
@@ -162,7 +162,7 @@
             .checkAdmin()
             .then(function (user) {
                 //protect the pages that need the user
-                if(user === '0') {
+                if (user === '0') {
                     deferred.reject();
                     $location.url('/');
                 } else {

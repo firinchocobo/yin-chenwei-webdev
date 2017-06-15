@@ -10,9 +10,9 @@ var facebookConfig = {
 };
 
 var googleConfig = {
-    clientID     : process.env.GOOGLE_CLIENT_ID,
-    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL  : process.env.GOOGLE_CALLBACK_URL
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: process.env.GOOGLE_CALLBACK_URL
 };
 
 var passport = require('passport');
@@ -47,7 +47,7 @@ app.delete('/api/user/:userId', deleteUser);
 //intercepting the http request and the login function
 app.post('/api/login', passport.authenticate('local'), login);
 app.get('/api/loggedin', loggedIn);
-app.post('/api/logout',logout);
+app.post('/api/logout', logout);
 app.post('/api/register', register);
 app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
@@ -55,7 +55,7 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     failureRedirect: '/assignment/assignment6/index.html#!/login'
 }));
 app.get('/api/checkadmin', checkAdmin);
-app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 app.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect: '/assignment/assignment6/index.html#!/profile',
@@ -66,40 +66,44 @@ function googleStrategy(token, refreshToken, profile, done) {
     userModel
         .findUserByGoogleId(profile.id)
         .then(
-            function(user) {
-                if(user) {
+            function (user) {
+                if (user) {
                     return done(null, user);
                 } else {
                     var email = profile.emails[0].value;
                     var newGoogleUser = {
-                        username:  email,
+                        username: email,
                         firstName: profile.name.givenName,
-                        lastName:  profile.name.familyName,
-                        email:     email,
+                        lastName: profile.name.familyName,
+                        email: email,
                         google: {
-                            id:    profile.id,
+                            id: profile.id,
                             token: token
                         }
                     };
                     return userModel.createUser(newGoogleUser);
                 }
             },
-            function(err) {
-                if (err) { return done(err); }
+            function (err) {
+                if (err) {
+                    return done(err);
+                }
             }
         )
         .then(
-            function(user){
+            function (user) {
                 return done(null, user);
             },
-            function(err){
-                if (err) { return done(err); }
+            function (err) {
+                if (err) {
+                    return done(err);
+                }
             }
         );
 }
 
 function isAdmin(req, res, next) {
-    if(req.isAuthenticated() && req.user.role === 'ADMIN') {
+    if (req.isAuthenticated() && req.user.role === 'ADMIN') {
         next();
     } else {
         res.sendStatus(401);
@@ -117,7 +121,6 @@ function checkAdmin(req, res) {
 
 
 function facebookStrategy(token, refreshToken, profile, done) {
-    console.log(profile)
     userModel
         .findUserByFacebookId(profile.id)
         .then(
@@ -182,7 +185,7 @@ function logout(req, res) {
 }
 
 function loggedIn(req, res) {
-    if(req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         res.json(req.user);
     } else {
         res.send('0');
@@ -210,7 +213,7 @@ function localStrategy(username, password, done) {
     userModel
         .findUserByUsername(username)
         .then(function (user) {
-            if(user && bcrypt.compareSync(password, user.password)) {
+            if (user && bcrypt.compareSync(password, user.password)) {
                 done(null, user);
             } else {
                 done(null, false);

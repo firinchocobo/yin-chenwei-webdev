@@ -40,11 +40,11 @@
                     } else {
                         $location.url($location.absUrl().replace('http', 'https'));
                     }
-                  // if ($location.host()!=='localhost') {
-                  //     url = $location.protocol()+"://" + $location.host() + "/assignment/assignment6/#!/";
-                  //     $location.path(url);
-                  // } else {
-                      $location.path('/');
+                    // if ($location.host()!=='localhost') {
+                    //     url = $location.protocol()+"://" + $location.host() + "/assignment/assignment6/#!/";
+                    //     $location.path(url);
+                    // } else {
+                    $location.path('/');
 
                 })
         }
