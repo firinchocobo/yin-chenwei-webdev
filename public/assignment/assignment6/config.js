@@ -6,27 +6,11 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "views/home/home.html",
+                templateUrl: "views/home/templates/main.view.client.html",
                 controller: "MainController",
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkCurrentUser
-                }
-            })
-            .when("/admin", {
-                templateUrl: "views/admin/admin.view.client.html",
-                // controller: "AdminController",
-                // controllerAs: "model",
-                // resolve: {
-                //     currentUser: checkAdmin
-                // }
-            })
-            .when("/admin/user", {
-                templateUrl: "views/admin/admin-users.view.client.html",
-                controller: "adminUsersController",
-                controllerAs: "model",
-                resolve: {
-                    currentUser: checkAdmin
                 }
             })
             .when("/login", {
@@ -172,3 +156,19 @@
         return deferred.promise;
     }
 })();
+// .when("/admin", {
+//     templateUrl: "views/admin/admin.view.client.html",
+//     controller: "AdminController",
+//     controllerAs: "model",
+//     resolve: {
+//         currentUser: checkAdmin
+//     }
+// })
+// .when("/admin/user", {
+//     templateUrl: "views/admin/admin-users.view.client.html",
+//     controller: "adminUsersController",
+//     controllerAs: "model",
+//     resolve: {
+//         currentUser: checkAdmin
+//     }
+// })

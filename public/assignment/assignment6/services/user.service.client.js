@@ -34,6 +34,7 @@
                     return response.data;
                 })
         }
+
         function logout() {
             var url = '/api/logout';
             return $http.post(url)

@@ -28,6 +28,11 @@
                 model.error = "password is required";
                 return;
             }
+            if (model.user.reEnterPassword === null || typeof model.user.reEnterPassword === 'undefined'
+                || model.user.reEnterPassword.trim() === "") {
+                model.error = "password is required";
+                return;
+            }
             if (model.user.password !== model.user.reEnterPassword) {
                 model.error = "password must match";
                 return;
