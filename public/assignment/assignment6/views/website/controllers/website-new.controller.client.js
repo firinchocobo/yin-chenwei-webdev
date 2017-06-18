@@ -40,6 +40,7 @@
                         $location.path("/website");
                     });
             } else {
+                document.getElementById('name').select();
                 model.error = "Website name is required";
             }
         }

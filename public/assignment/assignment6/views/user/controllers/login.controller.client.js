@@ -22,11 +22,13 @@
         function login() {
             if (model.user.username === null || typeof model.user.username === 'undefined'
                 || model.user.username.trim() === "") {
+                document.getElementById('username').select();
                 model.error = "username is required";
                 return;
             }
             if (model.user.password === null || typeof model.user.password === 'undefined'
                 || model.user.password.trim() === "") {
+                document.getElementById('password').select();
                 model.error = "passwords is required";
                 return;
             }

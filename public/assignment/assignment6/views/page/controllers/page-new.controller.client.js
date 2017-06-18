@@ -38,6 +38,7 @@
                         $location.path("/website/" + model.websiteId + "/page");
                     })
             } else {
+                document.getElementById('name').select();
                 model.error = "Page name is required";
             }
         }

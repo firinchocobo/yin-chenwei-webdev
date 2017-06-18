@@ -85,6 +85,7 @@
                         model.error = "Can't update website at this moment, try again!";
                     });
             } else {
+                document.getElementById('name').select();
                 model.error = "Widget name is required";
             }
         }

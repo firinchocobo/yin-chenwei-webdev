@@ -48,6 +48,7 @@
                         model.error = "Can't update at this moment, try again!";
                     });
             } else {
+                document.getElementById('name').select();
                 model.error = "Page name is required";
             }
         }
