@@ -1,0 +1,21 @@
+(function () {
+angular
+.module("<%= name %>")
+.controller("<%= entityName %>EditController", <%= entityName %>EditController);
+
+function <%= entityName %>EditController($routeParams, $location, <%= entityName %>Service) {
+
+var model = this;
+
+model.<%= entityName %>Id = $routeParams.<%= entityName %>Id;
+
+model.create<%= entityName %> = create<%= entityName %>;
+
+function create<%= entityName %>(<%= entityName %>) {
+    <%= entityName %>Service
+        .create<%= entityName %>(<%= entityName %>)
+        .then(function (status) {
+            $location.url('#!/wam/<%= entityName %>')
+        });
+    }
+}

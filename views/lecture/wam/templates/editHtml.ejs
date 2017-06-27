@@ -1,0 +1,15 @@
+<h1><%= entityName%> Edit Page</h1>
+
+<% var fields = entities[entityName].fields;
+%>
+
+<% for (var fieldName in fields) {
+ %>
+<label><%= fieldName%></label>
+<input ng-model="model.<%= entityName%>.<%= fieldName%>" class="form-control"/>
+<%
+}
+%>
+<button class="btn btn-block btn-primary">Create</button>
+<button class="btn btn-block btn-warning">Update</button>
+<a href="#!/wam/<%= entityName%>" class="btn btn-block btn-danger">Delete</a>

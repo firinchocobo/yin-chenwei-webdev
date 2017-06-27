@@ -1,26 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
-</head>
-<body>
-    <h1>Web Dev Course Home Page</h1>
 
-    <h2>Required links</h2>
-    <ul>
-        <li>
-            <a href="project/index.html">Project</a>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>Webdev Homepage</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="vendor/css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+        <li class="sidebar-brand">
+            <p>Navigation</p>
         </li>
         <li>
-            <a href="assignment/index.html">Assignment</a>
+            <a href="#top" onclick=$("#menu-close").click();>Home</a>
         </li>
         <li>
-            <a href="test/index.html">Test MongoDB</a>
+            <a href="#services" onclick=$("#menu-close").click();>Milestones</a>
         </li>
         <li>
-            <a href="https://github.com/ychenwei/yin-chenwei-webdev">Your public repository at GitHub.com</a>
+            <a href="#callout" onclick=$("#menu-close").click();>Weekly Assignment</a>
+        </li>
+        <li>
+            <a href="#contactInfo" onclick=$("#menu-close").click();>Contact</a>
         </li>
     </ul>
+</nav>
+
+<!-- Header -->
+<header id="top" class="header">
+    <div class="text-vertical-center">
+        <h1 id="title">Hello,</h1>
+        <h3 id="subtitle">~ homepage for CS5610 web dev</h3>
+        <br>
+        <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
+    </div>
+</header>
+
+<!-- About -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>From blank page to functional website,</h2>
+                <p class="lead">skills I learned from <a target="_blank" href="http://portal-cs5610online.rhcloud.com/portal/index.html#/modules/0">CS5610 Course Homepage</a>.</p>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+
+<!-- Services -->
+<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+<section id="services" class="services bg-primary">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-10 col-lg-offset-1">
+                <h2>Milestones</h2>
+                <hr class="small">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-graduation-cap fa-stack-1x text-primary"></i>
+                            </span>
+                            <h4>
+                                <strong>Final Project</strong>
+                            </h4>
+                            <p>A recipe and store search website, along with social networking functions.</p>
+                            <a href="https://cs5610-final-project-sum-2017.herokuapp.com/"
+                               class="btn btn-light">Go to Project</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                            </span>
+                            <h4>
+                                <strong>Weekly Assignment</strong>
+                            </h4>
+                            <p>A total of six accomplished assignments, developed from UI to database and eventually a full website.</p>
+                            <a href="#callout" class="btn btn-light">Go to Assignment</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                            </span>
+                            <h4>
+                                <strong>Test MongoDB</strong>
+                            </h4>
+                            <p>Test to see if the MongoDB is working correctly.</p>
+                            <a href="test/index.html" class="btn btn-light">Go to Test</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x text-primary"></i>
+                            </span>
+                            <h4>
+                                <strong>GitHub Repository</strong>
+                            </h4>
+                            <p>GitHub repository for this course, contains the weekly assignments and final project.</p>
+                            <a href="https://github.com/ychenwei/yin-chenwei-webdev"
+                               class="btn btn-light">Go to GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.col-lg-10 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+
+<!-- Callout -->
+<aside id="callout" class="callout">
+    <div class="text-vertical-center">
+        <h1>Weekly Assignment</h1>
+    </div>
+</aside>
+
+<!-- Portfolio -->
+<section id="portfolio" class="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h2>Steps</h2>
+                <hr class="small">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="portfolio-item">
+                            <a href="#">
+                                <h3>Assignment 1</h3>
+                            </a>
+                            <p>Set Up Development Environment</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="portfolio-item">
+                            <a href="assignment/assignment2/index.html">
+                                <h3>Assignment 2</h3>
+                            </a>
+                            <p>User Interface Development</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="portfolio-item">
+                            <a href="assignment/assignment3/index.html">
+                                <h3>Assignment 3</h3>
+                            </a>
+                            <p>Client Side Development</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="portfolio-item">
+                            <a href="assignment/assignment4/index.html">
+                                <h3>Assignment 4</h3>
+                            </a>
+                            <p>Server Side Development</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="portfolio-item">
+                            <a href="assignment/assignment5/index.html">
+                                <h3>Assignment 5</h3>
+                            </a>
+                            <p>Database Development</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="portfolio-item">
+                            <a href="assignment/assignment6/index.html">
+                                <h3>Assignment 6</h3>
+                            </a>
+                                <p>Security Development</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.col-lg-10 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+
+<!--&lt;!&ndash; Call to Action &ndash;&gt;-->
+<!--<aside class="call-to-action bg-primary">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-lg-12 text-center">-->
+                <!--<h3>The buttons below are impossible to resist.</h3>-->
+                <!--<a href="#" class="btn btn-lg btn-light">Click Me!</a>-->
+                <!--<a href="#" class="btn btn-lg btn-dark">Look at Me!</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</aside>-->
+
+<!-- Footer -->
+<footer>
+    <div id="contactInfo" class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h2><Strong>About me</Strong></h2>
+                <hr class="small">
+                <img class="img-responsive img-thumbnail" src="resource/pics/self.jpg"/>
+                <h4><strong>Chenwei Yin</strong>
+                </h4>
+                <p>Northeastern University
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:yin.chenw@husky.neu.edu">yin.chenw@husky.neu.edu</a>
+                    </li>
+                </ul>
+                <br>
+                <hr class="small">
+                <p class="text-muted">Template Copyright &copy; Start Bootstrap<br>
+                                      https://startbootstrap.com/template-overviews/stylish-portfolio/</p>
+            </div>
+        </div>
+    </div>
+    <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+</footer>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<!-- Custom Theme JavaScript -->
+<script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    //#to-top button appears after scrolling
+    var fixed = false;
+    $(document).scroll(function() {
+        if ($(this).scrollTop() > 250) {
+            if (!fixed) {
+                fixed = true;
+                // $('#to-top').css({position:'fixed', display:'block'});
+                $('#to-top').show("slow", function() {
+                    $('#to-top').css({
+                        position: 'fixed',
+                        display: 'block'
+                    });
+                });
+            }
+        } else {
+            if (fixed) {
+                fixed = false;
+                $('#to-top').hide("slow", function() {
+                    $('#to-top').css({
+                        display: 'none'
+                    });
+                });
+            }
+        }
+    });
+</script>
+
 </body>
+
 </html>

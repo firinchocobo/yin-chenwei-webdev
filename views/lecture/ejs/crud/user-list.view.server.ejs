@@ -1,0 +1,38 @@
+
+<link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+
+
+<div class="container-fluid">
+    <h1>List of users</h1>
+
+    <%
+//    _selectedUser = selectedUser || {}
+    %>
+    <!--forms by default submit as get, could change to post or put by adding method-->
+    <form action="/lecture/ejs/crud/user" method="post">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <input value="<%= selectedUser.username %>" name="username" class="form-control" />
+                <input value="<%= selectedUser._id %>" name="_id" class="form-control" type="hidden"/>
+                <!--must be a button-->
+                <button name = "action" value="create" class="btn btn-block btn-primary" type="submit">Create</button>
+                <button name = "action" value="update" class="btn btn-block btn-success" type="submit">Update</button>
+            </li>
+            <% for (var u in users) {
+            %>
+            <li class="list-group-item">
+                <%= users[u].username %>
+                <a class="pull-right"
+                   href="/lecture/ejs/crud/user/<%= users[u]._id %>/delete">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+                <a class="pull-right"
+                   href="/lecture/ejs/crud/user/<%= users[u]._id %>/select">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </li>
+            <%
+            } %>
+        </ul>
+    </form>
+</div>
