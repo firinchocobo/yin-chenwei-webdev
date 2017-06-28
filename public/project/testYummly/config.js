@@ -13,6 +13,11 @@
                 controller: "searchYummlyController",
                 controllerAs: "model"
             })
+            .when("/search_ingred", {
+                templateUrl: "views/yummly/templates/ingredient-detail.view.client.html",
+                controller: "ingredientDetailController",
+                controllerAs: "model"
+            })
             .when("/detail/:recipeId", {
                 templateUrl: "views/yummly/templates/detail-yummly.view.client.html",
                 controller: "detailYummlyController",
